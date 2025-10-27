@@ -4,22 +4,23 @@ class Cord:
         self.CordID = cid
         self.x = x
         self.y = y
-        self.Cordtype = ""
+        self.CordType = ""
     def give_stuff(self, type):
-        self.Cordtype = type
+        self.CordType = type
+    def display(self):
+        print(f"{self.CordID} : ({self.x},{self.y}) : {self.CordType}")
+def AssignCord(find_c, all_cords):
+    for find_c in all_cords:
+        if find_c.cid == all_cords:
+            return find_c
+    return None
+def PrintScreen():
+    print()
 
-
-while True:
-    print("")
-    nid = input("Enter ID: ")
-    nx = input("Enter X: ")
-    ny = input("Enter Y: ")
-    place = Cord(nid, nx, ny)
-    doit = input("Continue? ")
-    if doit == "y":
-        ntype = input("Enter type: ")
-        place.give_stuff(ntype)
-    CordDat = open("coordinates.dat", "ab")
-    pickle.dump(place, CordDat)
+#load cords
+for x in range (1):
+    CordDat = open("coordinates.dat", "rb")
+    cords = pickle.load(CordDat)
     CordDat.close()
-#to fix: 8
+    for c in cords:
+        fcid = AssignCord(c, cords)
