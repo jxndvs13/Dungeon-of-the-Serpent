@@ -77,6 +77,45 @@ class Artifact:
         input("Enter the Speed Increase: ")
         input("Enter the Resistance Increase: ")
 
+enemies = []
+items = []
+armors = []
+weapons = []
+artifacts = []
+while 1:
+    print("1.Add Enemy")
+    print("2.Add Item")
+    print("3.Add Armor")
+    print("4.Add Weapon")
+    print("5.Add Artifact")
+    print("6.pickle dump all data and exit")
+
+    option = input("\nEnter Your Choice: ")
+
+    if option =="1":
+        enemy = Enemy()
+        enemy.get_enemy_details()
+        enemies.append(enemy)
+    elif option =="2":
+        item = Item()
+        item.get_item_details()
+        items.append(item)
+    elif option =="3":
+        armor = Armor()
+        armor.get_armor_details()
+        armor.append(armor)
+    elif option =="4":
+        weapon = Weapon()
+        weapon.get_weapon_details()
+        weapons.append(weapon)
+    elif option =="5":
+        artifact = Artifact()
+        artifact.get_artifact_details()
+        artifacts.append(artifact)
+    elif option =="6":
+        with open("get_enemy_details.dat", "wb") as f:
+
+
 
 
 
