@@ -1,17 +1,28 @@
 import pickle
+import time
 #Generate Cords
 class Cord:
     def __init__(self, id, x, y):
         self.cid = id
         self.x = x
         self.y = y
-        self.CordType = ""
+        self.CordType = " "
     def give_stuff(self, type):
         self.CordType = type
     def display(self, n):
         print(f"c{n} : ({self.x},{self.y}) : {self.CordType}")
-def PrintScreen(cords):
-    print(cords[c1.CordType])
+def PrintScreen():
+    print()
+    print()
+    print()
+    print(c1.CordType,c2.CordType,c3.CordType,c4.CordType,c5.CordType,c6.CordType,c7.CordType,c8.CordType,c9.CordType)
+    print(c10.CordType,c11.CordType,c12.CordType,c13.CordType,c14.CordType,c15.CordType,c16.CordType,c17.CordType,c18.CordType)
+    print(c19.CordType,c20.CordType,c21.CordType,c22.CordType,c23.CordType,c24.CordType,c25.CordType,c26.CordType,c27.CordType)
+    print(c28.CordType,c29.CordType,c30.CordType,c31.CordType,c32.CordType,c33.CordType,c34.CordType,c35.CordType,c36.CordType)
+    print(c37.CordType,c38.CordType,c39.CordType,c40.CordType,c41.CordType,c42.CordType,c43.CordType,c44.CordType,c45.CordType)
+    print(c46.CordType,c47.CordType,c48.CordType,c49.CordType,c50.CordType,c51.CordType,c52.CordType,c53.CordType,c54.CordType)
+    print(c55.CordType, c56.CordType, c57.CordType, c58.CordType, c59.CordType, c60.CordType, c61.CordType, c62.CordType,c63.CordType)
+    print(c1.CordType, c2.CordType, c3.CordType, c4.CordType, c5.CordType, c6.CordType, c7.CordType, c8.CordType,c9.CordType)
 cords = []
 nx = 1
 ny = 1
@@ -749,4 +760,8 @@ while cord_generation == 1:
         nx += 1
     cord_generation = 0
 
-print (cords[c1.x])
+going = 1
+while going == 1:
+    PrintScreen()
+    if input() == "clear":
+        time.sleep(1)
