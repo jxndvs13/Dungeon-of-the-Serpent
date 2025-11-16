@@ -1,6 +1,14 @@
 import pickle
 import time
-#Generate Cords
+import tkinter as tk
+from tkinter import *
+#font=('Fixedsys', 12)
+#font=('Lucida Sans Typewriter', 12)
+#font=('Terminal', 12)
+screen = Tk()
+screen.geometry("720x500")
+screen.resizable(False, False)
+
 class Cord:
     def __init__(self, id, x, y):
         self.cid = id
@@ -12,21 +20,23 @@ class Cord:
     def display(self, n):
         print(f"c{n} : ({self.x},{self.y}) : {self.CordType}")
 def PrintScreen():
-    print()
-    print()
-    print()
-    print(c1.CordType,c2.CordType,c3.CordType,c4.CordType,c5.CordType,c6.CordType,c7.CordType,c8.CordType,c9.CordType)
-    print(c10.CordType,c11.CordType,c12.CordType,c13.CordType,c14.CordType,c15.CordType,c16.CordType,c17.CordType,c18.CordType)
-    print(c19.CordType,c20.CordType,c21.CordType,c22.CordType,c23.CordType,c24.CordType,c25.CordType,c26.CordType,c27.CordType)
-    print(c28.CordType,c29.CordType,c30.CordType,c31.CordType,c32.CordType,c33.CordType,c34.CordType,c35.CordType,c36.CordType)
-    print(c37.CordType,c38.CordType,c39.CordType,c40.CordType,c41.CordType,c42.CordType,c43.CordType,c44.CordType,c45.CordType)
-    print(c46.CordType,c47.CordType,c48.CordType,c49.CordType,c50.CordType,c51.CordType,c52.CordType,c53.CordType,c54.CordType)
-    print(c55.CordType, c56.CordType, c57.CordType, c58.CordType, c59.CordType, c60.CordType, c61.CordType, c62.CordType,c63.CordType)
-    print(c1.CordType, c2.CordType, c3.CordType, c4.CordType, c5.CordType, c6.CordType, c7.CordType, c8.CordType,c9.CordType)
+    Display.config(state=NORMAL)
+    Display.delete(1.0, "end-1c")
+    Display.insert(tk.INSERT,f"{c1.CordType} {c2.CordType} {c3.CordType} {c4.CordType} {c5.CordType} {c6.CordType} {c7.CordType} {c8.CordType} {c9.CordType}\n")
+    Display.insert(tk.INSERT,f"{c10.CordType} {c11.CordType} {c12.CordType} {c13.CordType} {c14.CordType} {c15.CordType} {c16.CordType} {c17.CordType} {c18.CordType}\n")
+    Display.insert(tk.INSERT,f"{c19.CordType} {c20.CordType} {c21.CordType} {c22.CordType} {c23.CordType} {c24.CordType} {c25.CordType} {c26.CordType} {c27.CordType}\n")
+    Display.insert(tk.INSERT,f"{c28.CordType} {c29.CordType} {c30.CordType} {c31.CordType} {c32.CordType} {c33.CordType} {c34.CordType} {c35.CordType} {c36.CordType}\n")
+    Display.insert(tk.INSERT,f"{c37.CordType} {c38.CordType} {c39.CordType} {c40.CordType} {c41.CordType} {c42.CordType} {c43.CordType} {c44.CordType} {c45.CordType}\n")
+    Display.insert(tk.INSERT,f"{c46.CordType} {c47.CordType} {c48.CordType} {c49.CordType} {c50.CordType} {c51.CordType} {c52.CordType} {c53.CordType} {c54.CordType}\n")
+    Display.insert(tk.INSERT,f"{c55.CordType} {c56.CordType} {c57.CordType} {c58.CordType} {c59.CordType} {c60.CordType} {c61.CordType} {c62.CordType} {c63.CordType}\n")
+    Display.insert(tk.INSERT,f"{c64.CordType} {c65.CordType} {c66.CordType} {c67.CordType} {c68.CordType} {c69.CordType} {c70.CordType} {c71.CordType} {c72.CordType}\n")
+    Display.insert(tk.INSERT,f"{c73.CordType} {c74.CordType} {c75.CordType} {c76.CordType} {c77.CordType} {c78.CordType} {c79.CordType} {c80.CordType} {c81.CordType}\n")
+    Display.config(state=DISABLED)
 cords = []
 nx = 1
 ny = 1
 
+#Generate Cords
 cord_generation = 1
 while cord_generation == 1:
     c1 = Cord(1, nx, ny)
@@ -760,8 +770,7 @@ while cord_generation == 1:
         nx += 1
     cord_generation = 0
 
-going = 1
-while going == 1:
-    PrintScreen()
-    if input() == "clear":
-        time.sleep(1)
+Display = Text(screen,width=17,height=9,font=("fixedsys",22))
+Display.place(x=10,y=10)
+PrintScreen()
+screen.mainloop()
