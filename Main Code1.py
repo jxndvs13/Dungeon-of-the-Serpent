@@ -59,8 +59,8 @@ class Player:
         PrintScreen()
 class Enemy:
     def __init__(self):
-        self.x = 1
-        self.y = 1
+        self.x = 9
+        self.y = 9
         self.Type = ""
         self.Symbol = ""
         self.EHp = ""
@@ -68,19 +68,20 @@ class Enemy:
         self.EWeapon = ""
         self.ESpd = ""
     def Move(self, pX, pY):
+        global cords
         Co = f_cord(self.x, self.y, cords)
         Co.give_stuff(" ")
         CU = f_cord(self.x, self.y - 1, cords)
         CL = f_cord(self.x - 1, self.y, cords)
-        CD = f_cord(self.x, self.y - 1, cords)
-        CR = f_cord(self.x - 1, self.y, cords)
+        CD = f_cord(self.x, self.y + 1, cords)
+        CR = f_cord(self.x + 1, self.y, cords)
         if self.y > pY and CU.CordType == " ":
-            self.y += -1
+            self.y -= 1
         elif self.x > pX and CL.CordType == " ":
-            self.x += -1
-        elif self.y > pY and CD.CordType == " ":
+            self.x -= 1
+        elif self.y < pY and CD.CordType == " ":
             self.y += 1
-        elif self.x > pX and CR.CordType == " ":
+        elif self.x < pX and CR.CordType == " ":
             self.x += 1
         Cn = f_cord(self.x, self.y, cords)
         Cn.give_stuff("X")
@@ -104,7 +105,7 @@ def PrintScreen():
     Display.insert(tk.INSERT,f"# {c55.CordType} {c56.CordType} {c57.CordType} {c58.CordType} {c59.CordType} {c60.CordType} {c61.CordType} {c62.CordType} {c63.CordType} #\n")
     Display.insert(tk.INSERT,f"# {c64.CordType} {c65.CordType} {c66.CordType} {c67.CordType} {c68.CordType} {c69.CordType} {c70.CordType} {c71.CordType} {c72.CordType} #\n")
     Display.insert(tk.INSERT,f"# {c73.CordType} {c74.CordType} {c75.CordType} {c76.CordType} {c77.CordType} {c78.CordType} {c79.CordType} {c80.CordType} {c81.CordType} #\n")
-    Display.insert(tk.INSERT, f"# # # # # # # # # # #\n")
+    Display.insert(tk.INSERT, f"# # # # # # # # # # #")
     Display.config(state=DISABLED)
 cords = []
 nx = 1
