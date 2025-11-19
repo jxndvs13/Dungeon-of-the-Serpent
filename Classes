@@ -50,6 +50,11 @@ class Armor:
         input("Enter the Armor Cost: ")
         input("Enter the Health Increase: ")
         input("Enter the Resistance Increase: ")
+
+    def append(self, armor):
+        pass
+
+
 class Weapon:
     def __init__(self):
         self.Weapon_Name = ""
@@ -114,9 +119,17 @@ while 1:
         artifacts.append(artifact)
     elif option =="6":
         with open("get_enemy_details.dat", "wb") as f:
-
-
-
-
-
+            pickle.dump(enemies, f)
+        with open("get_item_details.dat", "wb") as f:
+            pickle.dump(items, f)
+        with open("get_armor_details.dat", "wb") as f:
+            pickle.dump(armors, f)
+        with open("get_weapon_details.dat", "wb") as f:
+            pickle.dump(weapons, f)
+        with open("get_artifact_details.dat", "wb") as f:
+            pickle.dump(artifacts, f)
+        break
+    else:
+        print("Invalid Option!")
+        print("----------------------------------------------")
 
