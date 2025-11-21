@@ -1,19 +1,5 @@
 import pickle
 
-class Room:
-    def __init__(self):
-        self.Layout =""
-        self.Mcord = ""
-        self.Ndoor = ""
-        self.Edoor = ""
-        self.Sdoor = ""
-        self.Wdoor = ""
-        self.NWTreasure = ""
-        self.NETreasure = ""
-        self.SWTreasure = ""
-        self.SETreasure = ""
-    def get_room_details(self):
-        input("Enter layout details: ")
 class Enemy:
     def __init__(self):
         self.ECord = ""
@@ -132,4 +118,5 @@ while 1:
     else:
         print("Invalid Option!")
         print("----------------------------------------------")
+
 
