@@ -18,45 +18,115 @@ class Player:
     def __init__(self):
         self.x = 5
         self.y = 5
-        self.MaxHP = ""
-        self.HP = ""
-        self.Dmg = ""
-        self.Res = ""
+        self.MaxHP = 3
+        self.HP = 3
+        self.Dmg = 1
+        self.Res = 0
         self.Weapon = ""
-        self.Spd = ""
-        self.Bank = ""
+        self.Spd = 1
+        self.Bank = 0
+    def IncMaxHP(self, n):
+        self.MaxHP += n
+    def NewDmg(self, n):
+        self.Dmg = n
+    def NewWeapon(self, x):
+        self.Weapon = X
+    def Hurt(self, dmg):
+        ndmg = dmg - self.Res
+        self.Hp -= ndmg
     def MoveUp(self):
-        Co = f_cord(self.x, self.y, cords)
+        Co = f_cord(self.x, self.y)
         Co.give_stuff(" ")
         self.y += -1
-        Cn = f_cord(self.x, self.y, cords)
+        Cn = f_cord(self.x, self.y)
         Cn.give_stuff("O")
-        E.Move(self.x,self.y)
-        PrintScreen()
+        Moves -= 1
+        RunTurn()
     def MoveLeft(self):
-        Co = f_cord(P.x, P.y, cords)
+        Co = f_cord(P.x, P.y)
         Co.give_stuff(" ")
         self.x += -1
-        Cn = f_cord(P.x, P.y, cords)
+        Cn = f_cord(P.x, P.y)
         Cn.give_stuff("O")
-        E.Move(self.x,self.y)
-        PrintScreen()
+        Moves -= 1
+        RunTurn()
     def MoveDown(self):
-        Co = f_cord(P.x, P.y, cords)
+        Co = f_cord(P.x, P.y)
         Co.give_stuff(" ")
         self.y += 1
-        Cn = f_cord(P.x, P.y, cords)
+        Cn = f_cord(P.x, P.y)
         Cn.give_stuff("O")
-        E.Move(self.x,self.y)
-        PrintScreen()
+        Moves -= 1
+        RunTurn()
     def MoveRight(self):
-        Co = f_cord(P.x, P.y, cords)
+        Co = f_cord(P.x, P.y)
         Co.give_stuff(" ")
         self.x += 1
-        Cn = f_cord(P.x, P.y, cords)
+        Cn = f_cord(P.x, P.y)
         Cn.give_stuff("O")
-        E.Move(self.x,self.y)
-        PrintScreen()
+        Moves -= 1
+        RunTurn()
+    def MoveSkip(self):
+        Moves -= 1
+    def ForceUp(self):
+        Co = f_cord(self.x, self.y)
+        Co.give_stuff(" ")
+        self.y += -1
+        Cn = f_cord(self.x, self.y)
+        Cn.give_stuff("O")
+    def ForceLeft(self):
+        Co = f_cord(P.x, P.y)
+        Co.give_stuff(" ")
+        self.x += -1
+        Cn = f_cord(P.x, P.y)
+        Cn.give_stuff("O")
+    def ForceDown(self):
+        Co = f_cord(P.x, P.y)
+        Co.give_stuff(" ")
+        self.y += 1
+        Cn = f_cord(P.x, P.y)
+        Cn.give_stuff("O")
+    def ForceRight(self):
+        Co = f_cord(P.x, P.y)
+        Co.give_stuff(" ")
+        self.x += 1
+        Cn = f_cord(P.x, P.y)
+        Cn.give_stuff("O")
+    def AttackUp(self):
+        Co = f_cord(P.x,P.y + 1)
+        if Co.CordType == "X":
+            f_enemy(P.x + 1,P.y).Hurt(self.Weapon)
+        Attacks -= 1
+        RunTurn()
+    def AttackLeft(self):
+        Co = f_cord(P.x - 1,P.y)
+        if Co.CordType == "X":
+            f_enemy(P.x + 1,P.y).Hurt(self.Weapon)
+        Attacks -= 1
+        RunTurn()
+    def AttackDown(self):
+        Co = f_cord(P.x,P.y - 1)
+        if Co.CordType == "X":
+            f_enemy(P.x + 1,P.y).Hurt(self.Weapon)
+        Attacks -= 1
+        RunTurn()
+    def AttackRight(self):
+        Co = f_cord(P.x + 1,P.y)
+        if Co.CordType == "X":
+            f_enemy(P.x + 1,P.y).Hurt(self.Weapon)
+        Attacks -= 1
+        RunTurn()
+    def AttackSkip(self):
+        Attacks -= 1
+class Weapon:
+    def __init__(self):
+        self.Weapon_Name = ""
+        self.Weapon_Cost = ""
+        self.Weapon_Damage = ""
+        self.Weapon_Type = ""
+    def Equip(self):
+        P.NewDmg(self.Weapon_Damage)
+        P.NewWeapon(self.Weapon_Type)
 class Enemy:
     def __init__(self):
         self.x = 9
@@ -68,13 +138,10 @@ class Enemy:
         self.EWeapon = ""
         self.ESpd = ""
     def Move(self, pX, pY):
-        global cords
-        Co = f_cord(self.x, self.y, cords)
-        Co.give_stuff(" ")
-        CU = f_cord(self.x, self.y - 1, cords)
-        CL = f_cord(self.x - 1, self.y, cords)
-        CD = f_cord(self.x, self.y + 1, cords)
-        CR = f_cord(self.x + 1, self.y, cords)
+        CU = f_cord(self.x, self.y - 1)
+        CL = f_cord(self.x - 1, self.y)
+        CD = f_cord(self.x, self.y + 1)
+        CR = f_cord(self.x + 1, self.y)
         if self.y > pY and CU.CordType == " ":
             self.y -= 1
         elif self.x > pX and CL.CordType == " ":
@@ -83,15 +150,78 @@ class Enemy:
             self.y += 1
         elif self.x < pX and CR.CordType == " ":
             self.x += 1
-        Cn = f_cord(self.x, self.y, cords)
+        Cn = f_cord(self.x, self.y)
+        Cn.give_stuff("X")
+    def Attack(self):
+        Co = f_cord(self.x, self.y)
+        Co.give_stuff(" ")
+        CU = f_cord(self.x, self.y - 1)
+        CL = f_cord(self.x - 1, self.y)
+        CD = f_cord(self.x, self.y + 1)
+        CR = f_cord(self.x + 1, self.y)
+        if f_cord(self.x, self.y - 1).CordType == "O":
+            P.Hurt(self.EDmg)
+            if self.EWeapon == "Push" and f_cord(self.x, self.y - 2).CordType == " ":
+                P.ForceUp()
+            if self.EWeapon == "Light":
+                P.Hurt(self.EDmg)
+        elif f_cord(self.x - 1, self.y).CordType == "O":
+            P.Hurt(self.EDmg)
+            if self.EWeapon == "Push" and f_cord(self.x - 2, self.y).CordType == " ":
+                P.ForceLeft()
+            if self.EWeapon == "Light":
+                P.Hurt(self.EDmg)
+        elif f_cord(self.x, self.y + 1).CordType == "O":
+            P.Hurt(self.EDmg)
+            if self.EWeapon == "Push" and f_cord(self.x, self.y + 2).CordType == " ":
+                P.ForceDown()
+            if self.EWeapon == "Light":
+                P.Hurt(self.EDmg)
+        elif f_cord(self.x + 1, self.y).CordType == "O":
+            P.Hurt(self.EDmg)
+            if self.EWeapon == "Push" and f_cord(self.x + 2, self.y).CordType == " ":
+                P.ForceRight()
+            if self.EWeapon == "Light":
+                P.Hurt(self.EDmg)
+        Cn = f_cord(self.x, self.y)
         Cn.give_stuff("X")
         PrintScreen()
-
-def f_cord(fx, fy, all_cords):
-    for find in all_cords:
+    def Hurt(self, dmg):
+        self.EHp -= dmg
+        if self.EHp < 1:
+          activeEs.remove(self)
+          Co = f_cord(self.x, self.y)
+          Co.give_stuff(" ")
+def f_cord(fx, fy):
+    for find in cords:
         if find.x == fx and find.y == fy:
             return find
     return None
+def f_enemy(fx,fy):
+    for find in activeEs:
+        if find.x == fx and find.y == fy:
+            return find
+def RunTurn():
+    if Moves == 0 and Attacks == 0:
+        PrintScreen()
+        time.sleep(0.5)
+        for e in activeEs:
+            if e.Espd == 1:
+                Enemy.move(e,P.x,P.y)
+            if e.Espd == 2:
+                Enemy.move(e,P.x,P.y)
+                Enemy.move(e,P.x,P.y)
+            if e.Espd == 3:
+                Enemy.move(e,P.x,P.y)
+                Enemy.move(e,P.x,P.y)
+                Enemy.move(e,P.x,P.y)
+            e.Attack()
+        PrintScreen()
+        Moves = P.Spd
+        if P.Weapon == "Light":
+            Attacks = 2
+        else:
+            Attacks = 1
 def PrintScreen():
     Display.config(state=NORMAL)
     Display.delete(1.0, "end-1c")
@@ -703,3 +833,4 @@ MRight.place(x=140,y=420)
 
 PrintScreen()
 screen.mainloop()
+
