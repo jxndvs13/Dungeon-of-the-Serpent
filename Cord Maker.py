@@ -1,830 +1,456 @@
 import pickle
+import time
+import random
+import tkinter as tk
+from tkinter import *
+screen = Tk()
+screen.geometry("720x500")
+screen.resizable(False, False)
+
 class Cord:
     def __init__(self, x, y):
         self.x = x
         self.y = y
-        self.CordType = ""
+        self.CordType = " "
     def give_stuff(self, type):
         self.CordType = type
-    def display(self, n):
-        print(f"c{n} : ({self.x},{self.y}) : {self.CordType}")
-
-cords = []
-nx = 1
-ny = 1
-
-c1 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c1.give_stuff("#")
-cords.append(c1)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c2 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c2.give_stuff("#")
-cords.append(c2)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c3 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c3.give_stuff("#")
-cords.append(c3)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c4 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c4.give_stuff("#")
-cords.append(c4)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c5 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c5.give_stuff("#")
-cords.append(c5)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c6 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c6.give_stuff("#")
-cords.append(c6)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c7 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c7.give_stuff("#")
-cords.append(c7)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c8 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c8.give_stuff("#")
-cords.append(c8)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c9 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c9.give_stuff("#")
-cords.append(c9)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c10 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c10.give_stuff("#")
-cords.append(c10)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c11 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c11.give_stuff("#")
-cords.append(c11)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c12 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c12.give_stuff("#")
-cords.append(c12)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c13 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c13.give_stuff("#")
-cords.append(c13)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c14 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c14.give_stuff("#")
-cords.append(c14)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c15 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c15.give_stuff("#")
-cords.append(c15)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c16 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c16.give_stuff("#")
-cords.append(c16)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c17 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c17.give_stuff("#")
-cords.append(c17)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c18 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c18.give_stuff("#")
-cords.append(c18)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c19 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c19.give_stuff("#")
-cords.append(c19)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c20 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c20.give_stuff("#")
-cords.append(c20)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c21 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c21.give_stuff("#")
-cords.append(c21)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c22 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c22.give_stuff("#")
-cords.append(c22)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c23 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c23.give_stuff("#")
-cords.append(c23)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c24 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c24.give_stuff("#")
-cords.append(c24)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c25 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c25.give_stuff("#")
-cords.append(c25)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c26 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c26.give_stuff("#")
-cords.append(c26)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c27 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c27.give_stuff("#")
-cords.append(c27)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c28 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c28.give_stuff("#")
-cords.append(c28)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c29 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c29.give_stuff("#")
-cords.append(c29)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c30 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c30.give_stuff("#")
-cords.append(c30)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c31 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c31.give_stuff("#")
-cords.append(c31)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c32 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c32.give_stuff("#")
-cords.append(c32)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c33 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c33.give_stuff("#")
-cords.append(c33)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c34 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c34.give_stuff("#")
-cords.append(c34)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c35 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c35.give_stuff("#")
-cords.append(c35)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c36 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c36.give_stuff("#")
-cords.append(c36)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c37 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c37.give_stuff("#")
-cords.append(c37)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c38 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c38.give_stuff("#")
-cords.append(c38)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c39 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c39.give_stuff("#")
-cords.append(c39)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c40 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c40.give_stuff("#")
-cords.append(c40)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c41 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c41.give_stuff("#")
-cords.append(c41)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c42 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c42.give_stuff("#")
-cords.append(c42)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c43 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c43.give_stuff("#")
-cords.append(c43)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c44 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c44.give_stuff("#")
-cords.append(c44)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c45 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c45.give_stuff("#")
-cords.append(c45)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c46 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c46.give_stuff("#")
-cords.append(c46)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c47 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c47.give_stuff("#")
-cords.append(c47)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c48 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c48.give_stuff("#")
-cords.append(c48)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c49 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c49.give_stuff("#")
-cords.append(c49)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c50 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c50.give_stuff("#")
-cords.append(c50)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c51 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c51.give_stuff("#")
-cords.append(c51)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c52 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c52.give_stuff("#")
-cords.append(c52)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c53 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c53.give_stuff("#")
-cords.append(c53)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c54 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c54.give_stuff("#")
-cords.append(c54)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c55 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c55.give_stuff("#")
-cords.append(c55)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c56 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c56.give_stuff("#")
-cords.append(c56)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c57 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c57.give_stuff("#")
-cords.append(c57)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c58 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c58.give_stuff("#")
-cords.append(c58)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c59 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c59.give_stuff("#")
-cords.append(c59)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c60 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c60.give_stuff("#")
-cords.append(c60)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c61 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c61.give_stuff("#")
-cords.append(c61)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c62 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c62.give_stuff("#")
-cords.append(c62)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c63 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c63.give_stuff("#")
-cords.append(c63)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c64 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c64.give_stuff("#")
-cords.append(c64)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c65 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c65.give_stuff("#")
-cords.append(c65)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c66 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c66.give_stuff("#")
-cords.append(c66)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c67 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c67.give_stuff("#")
-cords.append(c67)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c68 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c68.give_stuff("#")
-cords.append(c68)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c69 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c69.give_stuff("#")
-cords.append(c69)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-c70 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c70.give_stuff("#")
-cords.append(c70)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c71 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c71.give_stuff("#")
-cords.append(c71)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c72 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c72.give_stuff("#")
-cords.append(c72)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c73 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c73.give_stuff("#")
-cords.append(c73)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c74 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c74.give_stuff("#")
-cords.append(c74)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c75 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c75.give_stuff("#")
-cords.append(c75)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c76 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c76.give_stuff("#")
-cords.append(c76)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c77 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c77.give_stuff("#")
-cords.append(c77)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c78 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c78.give_stuff("#")
-cords.append(c78)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c79 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c79.give_stuff("#")
-cords.append(c79)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-c80 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c80.give_stuff("#")
-cords.append(c80)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-c81 = Cord(nx, ny)
-if nx == 1 or nx == 9 or ny == 1 or ny == 9:
-    c81.give_stuff("#")
-cords.append(c81)
-if nx == 9:
-    nx = 1
-    ny += 1
-else:
-    nx += 1
-
-n = 1
-for x in cords:
-    x.display(n)
-    n+=1
-
-CordDat = open("coordinates.dat", "wb")
-pickle.dump(cords, CordDat)
+class Player:
+    def __init__(self):
+        self.x = 5
+        self.y = 5
+        self.MaxHP = 3
+        self.HP = 3
+        self.Dmg = 1
+        self.Res = 0
+        self.Weapon = "Cleave"
+        self.Spd = 1
+        self.Bank = 0
+    def IncMaxHP(self, n):
+        self.MaxHP += n
+    def NewDmg(self, n):
+        self.Dmg = n
+    def NewWeapon(self, x):
+        self.Weapon = X
+    def Hurt(self, dmg):
+        ndmg = dmg - self.Res
+        self.HP -= ndmg
+    def MoveUp(self):
+        global Moves
+        if f_cord(self.x,self.y-1) and Moves>0:
+            if f_cord(self.x, self.y - 1).CordType == " ":
+                Co = f_cord(self.x, self.y)
+                Co.give_stuff(" ")
+                self.y -= 1
+                Cn = f_cord(self.x, self.y)
+                Cn.give_stuff("O")
+                Moves -= 1
+                RunTurn()
+    def MoveLeft(self):
+        global Moves
+        if f_cord(self.x-1,self.y) and Moves>0:
+            if f_cord(self.x - 1, self.y).CordType == " ":
+                Co = f_cord(P.x, P.y)
+                Co.give_stuff(" ")
+                self.x -= 1
+                Cn = f_cord(P.x, P.y)
+                Cn.give_stuff("O")
+                Moves -= 1
+                RunTurn()
+    def MoveDown(self):
+        global Moves
+        if f_cord(self.x,self.y+1) and Moves>0:
+            if f_cord(self.x, self.y + 1).CordType == " ":
+                Co = f_cord(P.x, P.y)
+                Co.give_stuff(" ")
+                self.y += 1
+                Cn = f_cord(P.x, P.y)
+                Cn.give_stuff("O")
+                Moves -= 1
+                RunTurn()
+    def MoveRight(self):
+        global Moves
+        if f_cord(self.x+1,self.y) and Moves>0:
+            if f_cord(self.x + 1, self.y).CordType == " ":
+                Co = f_cord(P.x, P.y)
+                Co.give_stuff(" ")
+                self.x += 1
+                Cn = f_cord(P.x, P.y)
+                Cn.give_stuff("O")
+                Moves -= 1
+                RunTurn()
+    def MoveSkip(self):
+        global Moves
+        if Moves > 0:
+            Moves -= 1
+            RunTurn()
+    def ForceUp(self):
+        Co = f_cord(self.x, self.y)
+        Co.give_stuff(" ")
+        self.y += -1
+        Cn = f_cord(self.x, self.y)
+        Cn.give_stuff("O")
+    def ForceLeft(self):
+        Co = f_cord(P.x, P.y)
+        Co.give_stuff(" ")
+        self.x += -1
+        Cn = f_cord(P.x, P.y)
+        Cn.give_stuff("O")
+    def ForceDown(self):
+        Co = f_cord(P.x, P.y)
+        Co.give_stuff(" ")
+        self.y += 1
+        Cn = f_cord(P.x, P.y)
+        Cn.give_stuff("O")
+    def ForceRight(self):
+        Co = f_cord(P.x, P.y)
+        Co.give_stuff(" ")
+        self.x += 1
+        Cn = f_cord(P.x, P.y)
+        Cn.give_stuff("O")
+    def AttackUp(self):
+        global Attacks
+        Co = f_cord(P.x,P.y-1)
+        if Attacks>0:
+            if Co.CordType:
+                if Co.CordType != " ":
+                    f_enemy(P.x,P.y-1).Hurt(self.Dmg)
+                    Attacks -= 1
+            if self.Weapon == "Cleave":
+                C1 = f_cord(P.x+1,P.y-1)
+                if C1.CordType:
+                    if C1.CordType != " ":
+                        f_enemy(P.x+1, P.y-1).Hurt(self.Dmg)
+                        Attacks -= 1
+                C2 = f_cord(P.x-1,P.y-1)
+                if C2.CordType:
+                    if C2.CordType != " ":
+                        f_enemy(P.x-1,P.y-1).Hurt(self.Dmg)
+                        Attacks -= 1
+        RunTurn()
+    def AttackLeft(self):
+        global Attacks
+        Co = f_cord(P.x - 1,P.y)
+        if Attacks>0:
+            if Co.CordType:
+                if Co.CordType != " ":
+                    f_enemy(P.x - 1, P.y).Hurt(self.Dmg)
+                    Attacks -= 1
+            if self.Weapon == "Cleave":
+                C1 = f_cord(P.x - 1, P.y - 1)
+                if C1.CordType:
+                    if C1.CordType != " ":
+                        f_enemy(P.x-1, P.y - 1).Hurt(self.Dmg)
+                        Attacks -= 1
+                C2 = f_cord(P.x-1, P.y + 1)
+                if C2.CordType:
+                    if C2.CordType != " ":
+                        f_enemy(P.x-1, P.y + 1).Hurt(self.Dmg)
+                        Attacks -= 1
+        RunTurn()
+    def AttackDown(self):
+        global Attacks
+        Co = f_cord(P.x,P.y+1)
+        if Attacks>0:
+            if Co.CordType:
+                if Co.CordType != " ":
+                    f_enemy(P.x,P.y+1).Hurt(self.Dmg)
+                    Attacks -= 1
+            if self.Weapon == "Cleave":
+                C1 = f_cord(P.x+1,P.y+1)
+                if C1.CordType:
+                    if C1.CordType != " ":
+                        f_enemy(P.x+1, P.y+1).Hurt(self.Dmg)
+                        Attacks -= 1
+                C2 = f_cord(P.x-1,P.y+1)
+                if C2.CordType:
+                    if C2.CordType != " ":
+                        f_enemy(P.x-1,P.y+1).Hurt(self.Dmg)
+                        Attacks -= 1
+        RunTurn()
+    def AttackRight(self):
+        global Attacks
+        Co = f_cord(P.x + 1,P.y)
+        if Attacks>0:
+            if Co.CordType:
+                if Co.CordType != " ":
+                    f_enemy(P.x + 1, P.y).Hurt(self.Dmg)
+                    Attacks -= 1
+            if self.Weapon == "Cleave":
+                C1 = f_cord(P.x + 1, P.y - 1)
+                if C1.CordType:
+                    if C1.CordType != " ":
+                        f_enemy(P.x+1, P.y - 1).Hurt(self.Dmg)
+                        Attacks -= 1
+                C2 = f_cord(P.x + 1, P.y + 1)
+                if C2.CordType:
+                    if C2.CordType != " ":
+                        f_enemy(P.x+1, P.y + 1).Hurt(self.Dmg)
+                        Attacks -= 1
+        RunTurn()
+    def AttackSkip(self):
+        global Attacks
+        if Attacks > 0:
+            Attacks -= 1
+            RunTurn()
+class Weapon:
+    def __init__(self):
+        self.Weapon_Name = ""
+        self.Weapon_Cost = ""
+        self.Weapon_Damage = ""
+        self.Weapon_Type = ""
+    def Equip(self):
+        P.NewDmg(self.Weapon_Damage)
+        P.NewWeapon(self.Weapon_Type)
+class Enemy:
+    def __init__(self,x,y,Smbl,Hp,Dmg,Spd,Wv,Vlu):
+        self.x = x
+        self.y = y
+        self.Symbol = Smbl
+        self.EHp = Hp
+        self.EDmg = Dmg
+        self.ESpd = Spd
+        self.Wave = Wv
+        self.Value = Vlu
+        allEs.append(self)
+    def Spawn(self):
+        activeEs.append(self)
+        f_cord(self.x,self.y).give_stuff(self.Symbol)
+    def Move(self, pX, pY):
+        Co = f_cord(self.x, self.y)
+        CU = f_cord(self.x, self.y - 1)
+        CL = f_cord(self.x - 1, self.y)
+        CD = f_cord(self.x, self.y + 1)
+        CR = f_cord(self.x + 1, self.y)
+        if self.y>pY and self.x>pX and CU.CordType == " " and CL.CordType == " ":
+            if random.randint(1,2) == 1:
+                self.y -= 1
+                Co.give_stuff(" ")
+            else:
+                self.x -= 1
+                Co.give_stuff(" ")
+        elif self.y<pY and self.x>pX and CD.CordType == " " and CL.CordType == " ":
+            if random.randint(1,2) == 1:
+                self.y += 1
+                Co.give_stuff(" ")
+            else:
+                self.x -= 1
+                Co.give_stuff(" ")
+        elif self.y>pY and self.x<pX and CU.CordType == " " and CR.CordType == " ":
+            if random.randint(1,2) == 1:
+                self.y -= 1
+                Co.give_stuff(" ")
+            else:
+                self.x += 1
+                Co.give_stuff(" ")
+        elif self.y<pY and self.x<pX and CD.CordType == " " and CR.CordType == " ":
+            if random.randint(1,2) == 1:
+                self.y += 1
+                Co.give_stuff(" ")
+            else:
+                self.x += 1
+                Co.give_stuff(" ")
+        elif self.y > pY and CU.CordType == " ":
+            self.y -= 1
+            Co.give_stuff(" ")
+        elif self.x > pX and CL.CordType == " ":
+            self.x -= 1
+            Co.give_stuff(" ")
+        elif self.y < pY and CD.CordType == " ":
+            self.y += 1
+            Co.give_stuff(" ")
+        elif self.x < pX and CR.CordType == " ":
+            self.x += 1
+            Co.give_stuff(" ")
+        f_cord(self.x, self.y).give_stuff("X")
+class Zombie(Enemy):
+    def __init__(self,x,y,Wv):
+        Enemy.__init__(self,x,y,"X",1,1,1,Wv,1)
+    def Attack(self):
+        if f_cord(self.x, self.y - 1):
+            if f_cord(self.x, self.y - 1).CordType == "O":
+                P.Hurt(self.EDmg)
+        if f_cord(self.x - 1, self.y):
+            if f_cord(self.x - 1, self.y).CordType == "O":
+                P.Hurt(self.EDmg)
+        if f_cord(self.x, self.y + 1):
+            if f_cord(self.x, self.y + 1).CordType == "O":
+                P.Hurt(self.EDmg)
+        if f_cord(self.x + 1, self.y):
+            if f_cord(self.x + 1, self.y).CordType == "O":
+                P.Hurt(self.EDmg)
+    def Hurt(self, dmg):
+        self.EHp -= dmg
+        if self.EHp < 1:
+            activeEs.remove(self)
+            Co = f_cord(self.x, self.y)
+            Co.give_stuff(" ")
+            P.Bank += self.Value
+def f_cord(fx, fy):
+    for find in cords:
+        if find.x == fx and find.y == fy:
+            return find
+    return None
+def f_enemy(fx,fy):
+    for find in activeEs:
+        if find.x == fx and find.y == fy:
+            return find
+def WaveStart():
+    global WaveN
+    WaveN += 1
+    for e in allEs:
+        if e.Wave == WaveN:
+            e.Spawn()
+def RunTurn():
+    global Moves
+    global Attacks
+    if Moves == 0 and Attacks == 0:
+        for e in activeEs:
+            if e.ESpd == 1:
+                Enemy.Move(e,P.x,P.y)
+            if e.ESpd == 2:
+                Enemy.Move(e,P.x,P.y)
+                Enemy.Move(e,P.x,P.y)
+            if e.ESpd == 3:
+                Enemy.Move(e,P.x,P.y)
+                Enemy.Move(e,P.x,P.y)
+                Enemy.Move(e,P.x,P.y)
+            e.Attack()
+        Moves = P.Spd
+        if P.Weapon == "Light":
+            Attacks = 2
+        else:
+            Attacks = 1
+        if len(activeEs) == 0:
+            WaveStart()
+    PrintScreen()
+def PrintScreen():
+    if P.HP > 0:
+        Display.config(state=NORMAL)
+        Display.delete(1.0, "end-1c")
+        Display.insert(tk.INSERT, f"# # # # # # # # # # #\n")
+        Display.insert(tk.INSERT,
+                       f"# {f_cord(1, 1).CordType} {f_cord(2, 1).CordType} {f_cord(3, 1).CordType} {f_cord(4, 1).CordType} {f_cord(5, 1).CordType} {f_cord(6, 1).CordType} {f_cord(7, 1).CordType} {f_cord(8, 1).CordType} {f_cord(9, 1).CordType} #\n")
+        Display.insert(tk.INSERT,
+                       f"# {f_cord(1, 2).CordType} {f_cord(2, 2).CordType} {f_cord(3, 2).CordType} {f_cord(4, 2).CordType} {f_cord(5, 2).CordType} {f_cord(6, 2).CordType} {f_cord(7, 2).CordType} {f_cord(8, 2).CordType} {f_cord(9, 2).CordType} #\n")
+        Display.insert(tk.INSERT,
+                       f"# {f_cord(1, 3).CordType} {f_cord(2, 3).CordType} {f_cord(3, 3).CordType} {f_cord(4, 3).CordType} {f_cord(5, 3).CordType} {f_cord(6, 3).CordType} {f_cord(7, 3).CordType} {f_cord(8, 3).CordType} {f_cord(9, 3).CordType} #\n")
+        Display.insert(tk.INSERT,
+                       f"# {f_cord(1, 4).CordType} {f_cord(2, 4).CordType} {f_cord(3, 4).CordType} {f_cord(4, 4).CordType} {f_cord(5, 4).CordType} {f_cord(6, 4).CordType} {f_cord(7, 4).CordType} {f_cord(8, 4).CordType} {f_cord(9, 4).CordType} #\n")
+        Display.insert(tk.INSERT,
+                       f"# {f_cord(1, 5).CordType} {f_cord(2, 5).CordType} {f_cord(3, 5).CordType} {f_cord(4, 5).CordType} {f_cord(5, 5).CordType} {f_cord(6, 5).CordType} {f_cord(7, 5).CordType} {f_cord(8, 5).CordType} {f_cord(9, 5).CordType} #\n")
+        Display.insert(tk.INSERT,
+                       f"# {f_cord(1, 6).CordType} {f_cord(2, 6).CordType} {f_cord(3, 6).CordType} {f_cord(4, 6).CordType} {f_cord(5, 6).CordType} {f_cord(6, 6).CordType} {f_cord(7, 6).CordType} {f_cord(8, 6).CordType} {f_cord(9, 6).CordType} #\n")
+        Display.insert(tk.INSERT,
+                       f"# {f_cord(1, 7).CordType} {f_cord(2, 7).CordType} {f_cord(3, 7).CordType} {f_cord(4, 7).CordType} {f_cord(5, 7).CordType} {f_cord(6, 7).CordType} {f_cord(7, 7).CordType} {f_cord(8, 7).CordType} {f_cord(9, 7).CordType} #\n")
+        Display.insert(tk.INSERT,
+                       f"# {f_cord(1, 8).CordType} {f_cord(2, 8).CordType} {f_cord(3, 8).CordType} {f_cord(4, 8).CordType} {f_cord(5, 8).CordType} {f_cord(6, 8).CordType} {f_cord(7, 8).CordType} {f_cord(8, 8).CordType} {f_cord(9, 8).CordType} #\n")
+        Display.insert(tk.INSERT,
+                       f"# {f_cord(1, 9).CordType} {f_cord(2, 9).CordType} {f_cord(3, 9).CordType} {f_cord(4, 9).CordType} {f_cord(5, 9).CordType} {f_cord(6, 9).CordType} {f_cord(7, 9).CordType} {f_cord(8, 9).CordType} {f_cord(9, 9).CordType} #\n")
+        Display.insert(tk.INSERT, f"# # # # # # # # # # #")
+        Display.config(state=DISABLED)
+        Health.config(state=NORMAL)
+        Health.delete(1.0, "end-1c")
+        Health.insert(tk.INSERT, f"HP: {P.HP}/{P.MaxHP}")
+        Health.config(state=DISABLED)
+        Resistance.config(state=NORMAL)
+        Resistance.delete(1.0, "end-1c")
+        Resistance.insert(tk.INSERT, f"Res: {P.Res}")
+        Resistance.config(state=DISABLED)
+        Damage.config(state=NORMAL)
+        Damage.delete(1.0, "end-1c")
+        Damage.insert(tk.INSERT, f"DMG: {P.Dmg}")
+        Damage.config(state=DISABLED)
+        WType.config(state=NORMAL)
+        WType.delete(1.0, "end-1c")
+        WType.insert(tk.INSERT, f"{P.Weapon}")
+        WType.config(state=DISABLED)
+        Speed.config(state=NORMAL)
+        Speed.delete(1.0, "end-1c")
+        Speed.insert(tk.INSERT, f"SPD: {P.Spd}")
+        Speed.config(state=DISABLED)
+        Bank.config(state=NORMAL)
+        Bank.delete(1.0, "end-1c")
+        Bank.insert(tk.INSERT, f"Bank: {P.Bank}")
+        Bank.config(state=DISABLED)
+        ALabel.config(state=NORMAL)
+        ALabel.delete(1.0, "end-1c")
+        ALabel.insert(tk.INSERT, f"Attacks\n{Attacks}", ("center_tag",))
+        ALabel.config(state=DISABLED)
+        MLabel.config(state=NORMAL)
+        MLabel.delete(1.0, "end-1c")
+        MLabel.insert(tk.INSERT, f"Moves\n{Moves}", ("center_tag",))
+        MLabel.config(state=DISABLED)
+        WaveCounter.config(state=NORMAL)
+        WaveCounter.delete(1.0, "end-1c")
+        WaveCounter.insert(tk.INSERT, f"Wave {WaveN}")
+        WaveCounter.config(state=DISABLED)
+    else:
+        Display.config(state=NORMAL)
+        Display.delete(1.0, "end-1c")
+        Display.insert(tk.INSERT, f"\n\n\n\n\n      Game Over")
+
+with open("coordinates.dat", "rb") as cdat:
+    cords = pickle.load(cdat)
+P = Player()
+C = f_cord(P.x,P.y)
+C.give_stuff("O")
+activeEs = []
+allEs=[]
+e = Zombie(9,5,1)
+e=Zombie(9,4,1)
+e=Zombie(9,6,1)
+e = Zombie(9,1,2)
+e = Zombie(1,9,2)
+e = Zombie(1,2,3)
+e = Zombie(6,1,3)
+e = Zombie(8,9,3)
+Moves = P.Spd
+Attacks = 1
+WaveN = 0
+WaveStart()
+
+Display = Text(screen,width=21,height=11,font=("fixedsys",21))
+Display.place(x=10,y=10)
+MUp = Button(screen,width=3, height=1,font=("fixedsys",21),text="↑",command=P.MoveUp)
+MUp.place(x=440,y=120)
+MLeft = Button(screen,width=3, height=1,font=("fixedsys",21),text="←",command=P.MoveLeft)
+MLeft.place(x=375,y=180)
+MDown = Button(screen,width=3, height=1,font=("fixedsys",21),text="↓",command=P.MoveDown)
+MDown.place(x=440,y=240)
+MRight = Button(screen,width=3, height=1,font=("fixedsys",21),text="→",command=P.MoveRight)
+MRight.place(x=505,y=180)
+MSkip = Button(screen,width=6, height=3,font=("fixedsys",16),text="Skip",command=P.MoveSkip)
+MSkip.place(x=440,y=179)
+MLabel = Text(screen,width=7,height=2,font=("fixedsys",16))
+MLabel.place(x=373,y=129)
+MLabel.tag_configure("center_tag", justify="center")
+AUp = Button(screen,width=3, height=1,font=("fixedsys",21),text="↑",command=P.AttackUp)
+AUp.place(x=440,y=310)
+ALeft = Button(screen,width=3, height=1,font=("fixedsys",21),text="←",command=P.AttackLeft)
+ALeft.place(x=375,y=370)
+ADown = Button(screen,width=3, height=1,font=("fixedsys",21),text="↓",command=P.AttackDown)
+ADown.place(x=440,y=430)
+ARight = Button(screen,width=3, height=1,font=("fixedsys",21),text="→",command=P.AttackRight)
+ARight.place(x=505,y=370)
+ASkip = Button(screen,width=6, height=3,font=("fixedsys",16),text="Skip",command=P.AttackSkip)
+ASkip.place(x=440,y=369)
+ALabel = Text(screen,width=7,height=2,font=("fixedsys",16))
+ALabel.place(x=373,y=319)
+ALabel.tag_configure("center_tag", justify="center")
+Health = Text(screen,width=9,height=1,font=("fixedsys",21))
+Health.place(x=375,y=10)
+Resistance = Text(screen,width=9,height=1,font=("fixedsys",21))
+Resistance.place(x=523,y=10)
+Damage = Text(screen,width=9,height=1,font=("fixedsys",21))
+Damage.place(x=375,y=45)
+WType = Text(screen,width=9,height=1,font=("fixedsys",21))
+WType.place(x=523,y=45)
+Speed = Text(screen,width=9,height=1,font=("fixedsys",21))
+Speed.place(x=375,y=80)
+Bank = Text(screen,width=9,height=1,font=("fixedsys",21))
+Bank.place(x=523,y=80)
+WaveCounter = Text(screen,width=6,height=1,font=("fixedsys",21))
+WaveCounter.place(x=571,y=115)
+
+PrintScreen()
+screen.mainloop()
