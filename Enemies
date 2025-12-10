@@ -1,0 +1,84 @@
+class Enemy:
+    def __init__(self,x,y,Smbl,Hp,Dmg,Spd,Wv,Vlu):
+        self.x = x
+        self.y = y
+        self.Symbol = Smbl
+        self.EHp = Hp
+        self.EDmg = Dmg
+        self.ESpd = Spd
+        self.Wave = Wv
+        self.Value = Vlu
+        allEs.append(self)
+    def Spawn(self):
+        activeEs.append(self)
+        f_cord(self.x,self.y).give_stuff(self.Symbol)
+    def Move(self, pX, pY):
+        Co = f_cord(self.x, self.y)
+        CU = f_cord(self.x, self.y - 1)
+        CL = f_cord(self.x - 1, self.y)
+        CD = f_cord(self.x, self.y + 1)
+        CR = f_cord(self.x + 1, self.y)
+        if self.y>pY and self.x>pX and CU.CordType == " " and CL.CordType == " ":
+            if random.randint(1,2) == 1:
+                self.y -= 1
+                Co.give_stuff(" ")
+            else:
+                self.x -= 1
+                Co.give_stuff(" ")
+        elif self.y<pY and self.x>pX and CD.CordType == " " and CL.CordType == " ":
+            if random.randint(1,2) == 1:
+                self.y += 1
+                Co.give_stuff(" ")
+            else:
+                self.x -= 1
+                Co.give_stuff(" ")
+        elif self.y>pY and self.x<pX and CU.CordType == " " and CR.CordType == " ":
+            if random.randint(1,2) == 1:
+                self.y -= 1
+                Co.give_stuff(" ")
+            else:
+                self.x += 1
+                Co.give_stuff(" ")
+        elif self.y<pY and self.x<pX and CD.CordType == " " and CR.CordType == " ":
+            if random.randint(1,2) == 1:
+                self.y += 1
+                Co.give_stuff(" ")
+            else:
+                self.x += 1
+                Co.give_stuff(" ")
+        elif self.y > pY and CU.CordType == " ":
+            self.y -= 1
+            Co.give_stuff(" ")
+        elif self.x > pX and CL.CordType == " ":
+            self.x -= 1
+            Co.give_stuff(" ")
+        elif self.y < pY and CD.CordType == " ":
+            self.y += 1
+            Co.give_stuff(" ")
+        elif self.x < pX and CR.CordType == " ":
+            self.x += 1
+            Co.give_stuff(" ")
+        f_cord(self.x, self.y).give_stuff("X")
+class Thug(Enemy):
+    def __init__(self,x,y,Wv):
+        Enemy.__init__(self,x,y,"T",1,1,1,Wv,1)
+    def Attack(self):
+        if f_cord(self.x, self.y - 1):
+            if f_cord(self.x, self.y - 1).CordType == P.Symbol:
+                P.Hurt(self.EDmg)
+        if f_cord(self.x - 1, self.y):
+            if f_cord(self.x - 1, self.y).CordType == P.Symbol:
+                P.Hurt(self.EDmg)
+        if f_cord(self.x, self.y + 1):
+            if f_cord(self.x, self.y + 1).CordType == P.Symbol:
+                P.Hurt(self.EDmg)
+        if f_cord(self.x + 1, self.y):
+            if f_cord(self.x + 1, self.y).CordType == P.Symbol:
+                P.Hurt(self.EDmg)
+    def Hurt(self, dmg):
+        self.EHp -= dmg
+        if self.EHp < 1:
+            activeEs.remove(self)
+            Co = f_cord(self.x, self.y)
+            Co.give_stuff(" ")
+            P.Bank += self.Value
