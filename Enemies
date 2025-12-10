@@ -9,6 +9,8 @@ class Enemy:
         self.Wave = Wv
         self.Value = Vlu
         allEs.append(self)
+    def nSymbol(self,sym):
+        self.Symbol = sym
     def Spawn(self):
         activeEs.append(self)
         f_cord(self.x,self.y).give_stuff(self.Symbol)
