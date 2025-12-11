@@ -108,4 +108,5 @@ class Squire(Enemy):
             Co.give_stuff(" ")
             P.Bank += self.Value
         if self.EHp == 1:
-            self.nSymbol("t")
+            self.nSymbol("s")
+            f_cord(self.x, self.y).give_stuff(self.Symbol)
