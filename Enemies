@@ -60,7 +60,7 @@ class Enemy:
         elif self.x < pX and CR.CordType == " ":
             self.x += 1
             Co.give_stuff(" ")
-        f_cord(self.x, self.y).give_stuff("X")
+        f_cord(self.x, self.y).give_stuff(self.Symbol)
 class Thug(Enemy):
     def __init__(self,x,y,Wv):
         Enemy.__init__(self,x,y,"T",1,1,1,Wv,1)
