@@ -273,7 +273,6 @@ class Weapon(Purchasable):
     def Equip(self):
         P.NewDmg(self.Damage)
         P.NewWeapon(self.Type)
-        print("Equipped")
     def Display(self):
         return f"{self.Name}\n{self.Type}\nDmg: {self.Damage}\n{self.Description}\nCost: {self.Cost}"
 class Armor(Purchasable):
@@ -424,6 +423,314 @@ class Squire(Enemy):
         if self.EHp == 1:
             self.nSymbol("s")
             f_cord(self.x, self.y).give_stuff(self.Symbol)
+class Knight(Enemy):
+    def __init__(self, x, y, Wv):
+        Enemy.__init__(self, x, y, "K", 4, 3, 1, Wv, 4)
+    def Attack(self):
+        if f_cord(self.x, self.y - 1):
+            if f_cord(self.x, self.y - 1).CordType == P.Symbol:
+                P.Hurt(self.EDmg)
+        if f_cord(self.x - 1, self.y):
+            if f_cord(self.x - 1, self.y).CordType == P.Symbol:
+                P.Hurt(self.EDmg)
+        if f_cord(self.x, self.y + 1):
+            if f_cord(self.x, self.y + 1).CordType == P.Symbol:
+                P.Hurt(self.EDmg)
+        if f_cord(self.x + 1, self.y):
+            if f_cord(self.x + 1, self.y).CordType == P.Symbol:
+                P.Hurt(self.EDmg)
+    def Hurt(self, dmg):
+        self.EHp -= dmg
+        if self.EHp < 1:
+            activeEs.remove(self)
+            Co = f_cord(self.x, self.y)
+            Co.give_stuff(" ")
+            P.Bank += self.Value
+        if self.EHp < 2.5:
+            self.nSymbol("k")
+            f_cord(self.x, self.y).give_stuff(self.Symbol)
+class Archer(Enemy):
+    def __init__(self, x, y, Wv):
+        Enemy.__init__(self, x, y, "A", 1, 2, 1, Wv, 3)
+    def Attack(self):
+        if P.y == self.y and P.x > self.x:
+            if f_cord(self.x+1, self.y):
+                if f_cord(self.x + 1, self.y).CordType != " ":
+                    if f_cord(self.x + 1, self.y).CordType == P.Symbol:
+                        P.Hurt(self.EDmg)
+                    else:
+                        None
+            elif f_cord(self.x+2, self.y):
+                if f_cord(self.x + 2, self.y).CordType != " ":
+                    if f_cord(self.x + 2, self.y).CordType == P.Symbol:
+                        P.Hurt(self.EDmg)
+                    else:
+                        None
+            elif f_cord(self.x+3, self.y):
+                if f_cord(self.x + 3, self.y).CordType != " ":
+                    if f_cord(self.x + 3, self.y).CordType == P.Symbol:
+                        P.Hurt(self.EDmg)
+                    else:
+                        None
+        if P.y == self.y and P.x < self.x:
+            if f_cord(self.x-1, self.y):
+                if f_cord(self.x - 1, self.y).CordType != " ":
+                    if f_cord(self.x - 1, self.y).CordType == P.Symbol:
+                        P.Hurt(self.EDmg)
+                    else:
+                        None
+            elif f_cord(self.x-2, self.y):
+                if f_cord(self.x-2, self.y).CordType != " ":
+                    if f_cord(self.x-2, self.y).CordType == P.Symbol:
+                        P.Hurt(self.EDmg)
+                    else:
+                        None
+            elif f_cord(self.x-3, self.y):
+                if f_cord(self.x-3, self.y).CordType != " ":
+                    if f_cord(self.x-3, self.y).CordType == P.Symbol:
+                        P.Hurt(self.EDmg)
+                    else:
+                        None
+        if P.x == self.x and P.y < self.y:
+            if f_cord(self.x, self.y-1):
+                if f_cord(self.x, self.y-1).CordType != " ":
+                    if f_cord(self.x, self.y-1).CordType == P.Symbol:
+                        P.Hurt(self.EDmg)
+                    else:
+                        None
+            elif f_cord(self.x, self.y-2):
+                if f_cord(self.x, self.y-2).CordType != " ":
+                    if f_cord(self.x, self.y-2).CordType == P.Symbol:
+                        P.Hurt(self.EDmg)
+                    else:
+                        None
+            elif f_cord(self.x, self.y-3):
+                if f_cord(self.x, self.y-3).CordType != " ":
+                    if f_cord(self.x, self.y-3).CordType == P.Symbol:
+                        P.Hurt(self.EDmg)
+                    else:
+                        None
+        if P.x == self.x and P.y > self.y:
+            if f_cord(self.x, self.y+1):
+                if f_cord(self.x, self.y+1).CordType != " ":
+                    if f_cord(self.x, self.y+1).CordType == P.Symbol:
+                        P.Hurt(self.EDmg)
+                    else:
+                        None
+            elif f_cord(self.x, self.y+2):
+                if f_cord(self.x, self.y+2).CordType != " ":
+                    if f_cord(self.x, self.y+2).CordType == P.Symbol:
+                        P.Hurt(self.EDmg)
+                    else:
+                        None
+            elif f_cord(self.x, self.y+3):
+                if f_cord(self.x, self.y+3).CordType != " ":
+                    if f_cord(self.x, self.y+3).CordType == P.Symbol:
+                        P.Hurt(self.EDmg)
+                    else:
+                        None
+    def Hurt(self, dmg):
+        self.EHp -= dmg
+        if self.EHp < 1:
+            activeEs.remove(self)
+            Co = f_cord(self.x, self.y)
+            Co.give_stuff(" ")
+            P.Bank += self.Value
+class Berzerker(Enemy):
+    def __init__(self, x, y, Wv):
+        Enemy.__init__(self, x, y, "B", 2, 3, 2, Wv, 3)
+    def Attack(self):
+        if f_cord(self.x, self.y - 1):
+            if f_cord(self.x, self.y - 1).CordType == P.Symbol:
+                P.Hurt(self.EDmg)
+        if f_cord(self.x - 1, self.y):
+            if f_cord(self.x - 1, self.y).CordType == P.Symbol:
+                P.Hurt(self.EDmg)
+        if f_cord(self.x, self.y + 1):
+            if f_cord(self.x, self.y + 1).CordType == P.Symbol:
+                P.Hurt(self.EDmg)
+        if f_cord(self.x + 1, self.y):
+            if f_cord(self.x + 1, self.y).CordType == P.Symbol:
+                P.Hurt(self.EDmg)
+    def Hurt(self, dmg):
+        self.EHp -= dmg
+        if self.EHp < 1:
+            activeEs.remove(self)
+            Co = f_cord(self.x, self.y)
+            Co.give_stuff(" ")
+            P.Bank += self.Value
+        if self.EHp == 1:
+            self.nSymbol("b")
+            f_cord(self.x, self.y).give_stuff(self.Symbol)
+class Executioner(Enemy):
+    def __init__(self, x, y, Wv):
+        Enemy.__init__(self, x, y, "X", 5, 2, 1, Wv, 5)
+    def Attack(self):
+        if f_cord(self.x, self.y - 1):
+            if f_cord(self.x, self.y - 1).CordType == P.Symbol:
+                P.Hurt(self.EDmg)
+        if f_cord(self.x - 1, self.y):
+            if f_cord(self.x - 1, self.y).CordType == P.Symbol:
+                P.Hurt(self.EDmg)
+        if f_cord(self.x, self.y + 1):
+            if f_cord(self.x, self.y + 1).CordType == P.Symbol:
+                P.Hurt(self.EDmg)
+        if f_cord(self.x + 1, self.y):
+            if f_cord(self.x + 1, self.y).CordType == P.Symbol:
+                P.Hurt(self.EDmg)
+        if f_cord(self.x-1, self.y - 1):
+            if f_cord(self.x-1, self.y - 1).CordType == P.Symbol:
+                P.Hurt(self.EDmg)
+        if f_cord(self.x - 1, self.y+1):
+            if f_cord(self.x - 1, self.y+1).CordType == P.Symbol:
+                P.Hurt(self.EDmg)
+        if f_cord(self.x+1, self.y + 1):
+            if f_cord(self.x+1, self.y + 1).CordType == P.Symbol:
+                P.Hurt(self.EDmg)
+        if f_cord(self.x + 1, self.y-1):
+            if f_cord(self.x + 1, self.y-1).CordType == P.Symbol:
+                P.Hurt(self.EDmg)
+    def Hurt(self, dmg):
+        self.EHp -= dmg
+        if self.EHp < 1:
+            activeEs.remove(self)
+            Co = f_cord(self.x, self.y)
+            Co.give_stuff(" ")
+            P.Bank += self.Value
+        if self.EHp < 2.5:
+            self.nSymbol("x")
+            f_cord(self.x, self.y).give_stuff(self.Symbol)
+class Rogue(Enemy):
+    def __init__(self, x, y, Wv):
+        Enemy.__init__(self, x, y, "R", 1, 2, 2, Wv, 3)
+    def Attack(self):
+        for x in range (0,1):
+            if f_cord(self.x, self.y - 1):
+                if f_cord(self.x, self.y - 1).CordType == P.Symbol:
+                    P.Hurt(self.EDmg)
+            if f_cord(self.x - 1, self.y):
+                if f_cord(self.x - 1, self.y).CordType == P.Symbol:
+                    P.Hurt(self.EDmg)
+            if f_cord(self.x, self.y + 1):
+                if f_cord(self.x, self.y + 1).CordType == P.Symbol:
+                    P.Hurt(self.EDmg)
+            if f_cord(self.x + 1, self.y):
+                if f_cord(self.x + 1, self.y).CordType == P.Symbol:
+                    P.Hurt(self.EDmg)
+class Longbowmen(Enemy):
+    def __init__(self, x, y, Wv):
+        Enemy.__init__(self, x, y, "L", 3, 4, 1, Wv, 5)
+    def Attack(self):
+        if P.y == self.y and P.x > self.x:
+            if f_cord(self.x+1, self.y):
+                if f_cord(self.x + 1, self.y).CordType != " ":
+                    if f_cord(self.x + 1, self.y).CordType == P.Symbol:
+                        P.Hurt(self.EDmg)
+                    else:
+                        None
+            elif f_cord(self.x+2, self.y):
+                if f_cord(self.x + 2, self.y).CordType != " ":
+                    if f_cord(self.x + 2, self.y).CordType == P.Symbol:
+                        P.Hurt(self.EDmg)
+                    else:
+                        None
+            elif f_cord(self.x+3, self.y):
+                if f_cord(self.x + 3, self.y).CordType != " ":
+                    if f_cord(self.x + 3, self.y).CordType == P.Symbol:
+                        P.Hurt(self.EDmg)
+                    else:
+                        None
+            elif f_cord(self.x+4, self.y):
+                if f_cord(self.x + 4, self.y).CordType != " ":
+                    if f_cord(self.x + 4, self.y).CordType == P.Symbol:
+                        P.Hurt(self.EDmg)
+                    else:
+                        None
+        if P.y == self.y and P.x < self.x:
+            if f_cord(self.x-1, self.y):
+                if f_cord(self.x - 1, self.y).CordType != " ":
+                    if f_cord(self.x - 1, self.y).CordType == P.Symbol:
+                        P.Hurt(self.EDmg)
+                    else:
+                        None
+            elif f_cord(self.x-2, self.y):
+                if f_cord(self.x-2, self.y).CordType != " ":
+                    if f_cord(self.x-2, self.y).CordType == P.Symbol:
+                        P.Hurt(self.EDmg)
+                    else:
+                        None
+            elif f_cord(self.x-3, self.y):
+                if f_cord(self.x-3, self.y).CordType != " ":
+                    if f_cord(self.x-3, self.y).CordType == P.Symbol:
+                        P.Hurt(self.EDmg)
+                    else:
+                        None
+            elif f_cord(self.x-4, self.y):
+                if f_cord(self.x-4, self.y).CordType != " ":
+                    if f_cord(self.x-4, self.y).CordType == P.Symbol:
+                        P.Hurt(self.EDmg)
+                    else:
+                        None
+        if P.x == self.x and P.y < self.y:
+            if f_cord(self.x, self.y-1):
+                if f_cord(self.x, self.y-1).CordType != " ":
+                    if f_cord(self.x, self.y-1).CordType == P.Symbol:
+                        P.Hurt(self.EDmg)
+                    else:
+                        None
+            elif f_cord(self.x, self.y-2):
+                if f_cord(self.x, self.y-2).CordType != " ":
+                    if f_cord(self.x, self.y-2).CordType == P.Symbol:
+                        P.Hurt(self.EDmg)
+                    else:
+                        None
+            elif f_cord(self.x, self.y-3):
+                if f_cord(self.x, self.y-3).CordType != " ":
+                    if f_cord(self.x, self.y-3).CordType == P.Symbol:
+                        P.Hurt(self.EDmg)
+                    else:
+                        None
+            elif f_cord(self.x, self.y-4):
+                if f_cord(self.x, self.y-4).CordType != " ":
+                    if f_cord(self.x, self.y-4).CordType == P.Symbol:
+                        P.Hurt(self.EDmg)
+                    else:
+                        None
+        if P.x == self.x and P.y > self.y:
+            if f_cord(self.x, self.y+1):
+                if f_cord(self.x, self.y+1).CordType != " ":
+                    if f_cord(self.x, self.y+1).CordType == P.Symbol:
+                        P.Hurt(self.EDmg)
+                    else:
+                        None
+            elif f_cord(self.x, self.y+2):
+                if f_cord(self.x, self.y+2).CordType != " ":
+                    if f_cord(self.x, self.y+2).CordType == P.Symbol:
+                        P.Hurt(self.EDmg)
+                    else:
+                        None
+            elif f_cord(self.x, self.y+3):
+                if f_cord(self.x, self.y+3).CordType != " ":
+                    if f_cord(self.x, self.y+3).CordType == P.Symbol:
+                        P.Hurt(self.EDmg)
+                    else:
+                        None
+            elif f_cord(self.x, self.y+4):
+                if f_cord(self.x, self.y+4).CordType != " ":
+                    if f_cord(self.x, self.y+4).CordType == P.Symbol:
+                        P.Hurt(self.EDmg)
+                    else:
+                        None
+    def Hurt(self, dmg):
+        self.EHp -= dmg
+        if self.EHp < 1:
+            activeEs.remove(self)
+            Co = f_cord(self.x, self.y)
+            Co.give_stuff(" ")
+            P.Bank += self.Value
+        if self.EHp == 1:
+            self.nSymbol("l")
+            f_cord(self.x, self.y).give_stuff(self.Symbol)
 def f_cord(fx, fy):
     for find in cords:
         if find.x == fx and find.y == fy:
@@ -572,8 +879,6 @@ def RefreshShop():
         Shop3.delete(1.0, "end-1c")
         Shop3.insert(tk.INSERT, Product3.Display())
         Shop3.config(state=DISABLED)
-        print(R2)
-        print(R3)
 def Buy1():
     if P.Bank >= Product1.Cost:
         Product1.Equip()
