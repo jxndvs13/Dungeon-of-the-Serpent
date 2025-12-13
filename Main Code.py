@@ -22,7 +22,7 @@ class Player:
         self.PermHP = 0
         self.Dmg = 1
         self.Res = 0
-        self.Weapon = "Normal"
+        self.Weapon = "Push"
         self.Spd = 1
         self.Bank = 1
         self.Symbol = "0"
@@ -149,6 +149,9 @@ class Player:
                                 f_enemy(P.x,P.y-r).Hurt(self.Dmg)
                                 Attacks -= 1
                                 still = "N"
+                if self.Weapon == "Push" and Co.CordType != " ":
+                    e = f_enemy(P.x, P.y-1)
+                    e.ForceUp()
             if self.Weapon == "Cleave":
                 C1 = f_cord(P.x+1,P.y-1)
                 if C1.CordType:
@@ -160,10 +163,6 @@ class Player:
                     if C2.CordType != " ":
                         f_enemy(P.x-1,P.y-1).Hurt(self.Dmg)
                         Attacks -= 1
-            if self.Weapon == "Push":
-                e = f_enemy(P.x,P.y-1)
-                e.ForceUp()
-                e.ForceUp()
         RunTurn()
     def AttackLeft(self):
         global Attacks
@@ -181,6 +180,9 @@ class Player:
                                 f_enemy(P.x-r, P.y).Hurt(self.Dmg)
                                 Attacks -= 1
                                 still = "N"
+                if self.Weapon == "Push" and Co.CordType != " ":
+                    e = f_enemy(P.x-1, P.y)
+                    e.ForceLeft()
             if self.Weapon == "Cleave":
                 C1 = f_cord(P.x - 1, P.y - 1)
                 if C1.CordType:
@@ -192,10 +194,6 @@ class Player:
                     if C2.CordType != " ":
                         f_enemy(P.x-1, P.y + 1).Hurt(self.Dmg)
                         Attacks -= 1
-            if self.Weapon == "Push":
-                e = f_enemy(P.x-1,P.y)
-                e.ForceUp()
-                e.ForceUp()
         RunTurn()
     def AttackDown(self):
         global Attacks
@@ -213,6 +211,9 @@ class Player:
                                 f_enemy(P.x, P.y+r).Hurt(self.Dmg)
                                 Attacks -= 1
                                 still = "N"
+                if self.Weapon == "Push" and Co.CordType != " ":
+                    e = f_enemy(P.x, P.y+1)
+                    e.ForceDown()
             if self.Weapon == "Cleave":
                 C1 = f_cord(P.x+1,P.y+1)
                 if C1.CordType:
@@ -224,10 +225,6 @@ class Player:
                     if C2.CordType != " ":
                         f_enemy(P.x-1,P.y+1).Hurt(self.Dmg)
                         Attacks -= 1
-            if self.Weapon == "Push":
-                e = f_enemy(P.x,P.y+1)
-                e.ForceUp()
-                e.ForceUp()
         RunTurn()
     def AttackRight(self):
         global Attacks
@@ -245,6 +242,9 @@ class Player:
                                 f_enemy(P.x+r, P.y).Hurt(self.Dmg)
                                 Attacks -= 1
                                 still = "N"
+                if self.Weapon == "Push" and Co.CordType != " ":
+                    e = f_enemy(P.x + 1, P.y)
+                    e.ForceRight()
             if self.Weapon == "Cleave":
                 C1 = f_cord(P.x + 1, P.y - 1)
                 if C1.CordType:
@@ -256,9 +256,6 @@ class Player:
                     if C2.CordType != " ":
                         f_enemy(P.x+1, P.y + 1).Hurt(self.Dmg)
                         Attacks -= 1
-            if self.Weapon == "Push":
-                e = f_enemy(P.x+1,P.y)
-                e.ForceRight()
         RunTurn()
     def AttackSkip(self):
         global Attacks
@@ -1045,4 +1042,3 @@ ReShop.place(x=375,y=318)
 RefreshShop()
 PrintScreen()
 screen.mainloop()
-
