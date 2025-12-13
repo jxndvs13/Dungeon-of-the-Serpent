@@ -160,6 +160,10 @@ class Player:
                     if C2.CordType != " ":
                         f_enemy(P.x-1,P.y-1).Hurt(self.Dmg)
                         Attacks -= 1
+            if self.Weapon == "Push":
+                e = f_enemy(P.x,P.y-1)
+                e.ForceUp()
+                e.ForceUp()
         RunTurn()
     def AttackLeft(self):
         global Attacks
@@ -188,6 +192,10 @@ class Player:
                     if C2.CordType != " ":
                         f_enemy(P.x-1, P.y + 1).Hurt(self.Dmg)
                         Attacks -= 1
+            if self.Weapon == "Push":
+                e = f_enemy(P.x-1,P.y)
+                e.ForceUp()
+                e.ForceUp()
         RunTurn()
     def AttackDown(self):
         global Attacks
@@ -216,6 +224,10 @@ class Player:
                     if C2.CordType != " ":
                         f_enemy(P.x-1,P.y+1).Hurt(self.Dmg)
                         Attacks -= 1
+            if self.Weapon == "Push":
+                e = f_enemy(P.x,P.y+1)
+                e.ForceUp()
+                e.ForceUp()
         RunTurn()
     def AttackRight(self):
         global Attacks
@@ -223,7 +235,7 @@ class Player:
         if Attacks>0:
             if Co.CordType:
                 if Co.CordType != " ":
-                    f_enemy(P.x + 1, P.y).Hurt(self.Dmg)
+                    f_enemy(P.x+1, P.y).Hurt(self.Dmg)
                     Attacks -= 1
                 elif P.Weapon == "Ranged":
                     still = "Y"
@@ -244,6 +256,9 @@ class Player:
                     if C2.CordType != " ":
                         f_enemy(P.x+1, P.y + 1).Hurt(self.Dmg)
                         Attacks -= 1
+            if self.Weapon == "Push":
+                e = f_enemy(P.x+1,P.y)
+                e.ForceRight()
         RunTurn()
     def AttackSkip(self):
         global Attacks
@@ -374,6 +389,58 @@ class Enemy:
             self.x += 1
             Co.give_stuff(" ")
         f_cord(self.x, self.y).give_stuff(self.Symbol)
+    def ForceUp(self):
+        if f_cord(self.x,self.y-1):
+            Co = f_cord(self.x, self.y)
+            Co.give_stuff(" ")
+            self.y += -1
+            Cn = f_cord(self.x, self.y)
+            Cn.give_stuff(self.Symbol)
+        if f_cord(self.x,self.y-1):
+            Co = f_cord(self.x, self.y)
+            Co.give_stuff(" ")
+            self.y += -1
+            Cn = f_cord(self.x, self.y)
+            Cn.give_stuff(self.Symbol)
+    def ForceLeft(self):
+        if f_cord(self.x-1,self.y):
+            Co = f_cord(P.x, P.y)
+            Co.give_stuff(" ")
+            self.x += -1
+            Cn = f_cord(P.x, P.y)
+            Cn.give_stuff(self.Symbol)
+        if f_cord(self.x-1,self.y):
+            Co = f_cord(P.x, P.y)
+            Co.give_stuff(" ")
+            self.x += -1
+            Cn = f_cord(P.x, P.y)
+            Cn.give_stuff(self.Symbol)
+    def ForceDown(self):
+        if f_cord(self.x,self.y+1):
+            Co = f_cord(P.x, P.y)
+            Co.give_stuff(" ")
+            self.y += 1
+            Cn = f_cord(P.x, P.y)
+            Cn.give_stuff(self.Symbol)
+        if f_cord(self.x,self.y+1):
+            Co = f_cord(P.x, P.y)
+            Co.give_stuff(" ")
+            self.y += 1
+            Cn = f_cord(P.x, P.y)
+            Cn.give_stuff(self.Symbol)
+    def ForceRight(self):
+        if f_cord(self.x+1,self.y):
+            Co = f_cord(P.x, P.y)
+            Co.give_stuff(" ")
+            self.x += 1
+            Cn = f_cord(P.x, P.y)
+            Cn.give_stuff(self.Symbol)
+        if f_cord(self.x+1,self.y):
+            Co = f_cord(P.x, P.y)
+            Co.give_stuff(" ")
+            self.x += 1
+            Cn = f_cord(P.x, P.y)
+            Cn.give_stuff(self.Symbol)
 class Thug(Enemy):
     def __init__(self,x,y,Wv):
         Enemy.__init__(self,x,y,"T",1,1,1,Wv,1)
@@ -978,3 +1045,4 @@ ReShop.place(x=375,y=318)
 RefreshShop()
 PrintScreen()
 screen.mainloop()
+
