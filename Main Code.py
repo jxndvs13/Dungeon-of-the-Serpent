@@ -22,7 +22,7 @@ class Player:
         self.PermHP = 0
         self.Dmg = 1
         self.Res = 0
-        self.Weapon = "Push"
+        self.Weapon = "Normal"
         self.Spd = 1
         self.Bank = 1
         self.Symbol = "0"
@@ -141,6 +141,11 @@ class Player:
                 if Co.CordType != " ":
                     f_enemy(P.x, P.y - 1).Hurt(self.Dmg)
                     Attacks -= 1
+                elif P.Weapon == "Reach":
+                    if f_cord(P.x,P.y-2):
+                        if f_cord(P.x,P.y-2).CordType != " ":
+                            f_enemy(P.x,P.y-2).Hurt(self.Dmg)
+                            Attacks -= 1
                 elif P.Weapon == "Ranged":
                     still = "Y"
                     for r in range (2,8):
@@ -172,6 +177,11 @@ class Player:
                 if Co.CordType != " ":
                     f_enemy(P.x - 1, P.y).Hurt(self.Dmg)
                     Attacks -= 1
+                elif P.Weapon == "Reach":
+                    if f_cord(P.x-2,P.y):
+                        if f_cord(P.x-2,P.y).CordType != " ":
+                            f_enemy(P.x-2,P.y).Hurt(self.Dmg)
+                            Attacks -= 1
                 elif P.Weapon == "Ranged":
                     still = "Y"
                     for r in range(2, 8):
@@ -203,6 +213,11 @@ class Player:
                 if Co.CordType != " ":
                     f_enemy(P.x,P.y+1).Hurt(self.Dmg)
                     Attacks -= 1
+                elif P.Weapon == "Reach":
+                    if f_cord(P.x,P.y+2):
+                        if f_cord(P.x,P.y+2).CordType != " ":
+                            f_enemy(P.x,P.y+2).Hurt(self.Dmg)
+                            Attacks -= 1
                 elif P.Weapon == "Ranged":
                     still = "Y"
                     for r in range(2, 8):
@@ -234,6 +249,11 @@ class Player:
                 if Co.CordType != " ":
                     f_enemy(P.x+1, P.y).Hurt(self.Dmg)
                     Attacks -= 1
+                elif P.Weapon == "Reach":
+                    if f_cord(P.x+2,P.y):
+                        if f_cord(P.x+2,P.y).CordType != " ":
+                            f_enemy(P.x+2,P.y).Hurt(self.Dmg)
+                            Attacks -= 1
                 elif P.Weapon == "Ranged":
                     still = "Y"
                     for r in range(2, 8):
@@ -333,6 +353,7 @@ class Enemy:
         self.ESpd = Spd
         self.Wave = Wv
         self.Value = Vlu
+        self.Pushed = 0
         allEs.append(self)
     def nSymbol(self,sym):
         self.Symbol = sym
@@ -340,104 +361,83 @@ class Enemy:
         activeEs.append(self)
         f_cord(self.x,self.y).give_stuff(self.Symbol)
     def Move(self, pX, pY):
-        Co = f_cord(self.x, self.y)
-        CU = f_cord(self.x, self.y - 1)
-        CL = f_cord(self.x - 1, self.y)
-        CD = f_cord(self.x, self.y + 1)
-        CR = f_cord(self.x + 1, self.y)
-        if self.y>pY and self.x>pX and CU.CordType == " " and CL.CordType == " ":
-            if random.randint(1,2) == 1:
+        if self.Pushed == 1:
+            self.Pushed = 0
+        else:
+            Co = f_cord(self.x, self.y)
+            CU = f_cord(self.x, self.y - 1)
+            CL = f_cord(self.x - 1, self.y)
+            CD = f_cord(self.x, self.y + 1)
+            CR = f_cord(self.x + 1, self.y)
+            if self.y > pY and self.x > pX and CU.CordType == " " and CL.CordType == " ":
+                if random.randint(1, 2) == 1:
+                    self.y -= 1
+                    Co.give_stuff(" ")
+                else:
+                    self.x -= 1
+                    Co.give_stuff(" ")
+            elif self.y < pY and self.x > pX and CD.CordType == " " and CL.CordType == " ":
+                if random.randint(1, 2) == 1:
+                    self.y += 1
+                    Co.give_stuff(" ")
+                else:
+                    self.x -= 1
+                    Co.give_stuff(" ")
+            elif self.y > pY and self.x < pX and CU.CordType == " " and CR.CordType == " ":
+                if random.randint(1, 2) == 1:
+                    self.y -= 1
+                    Co.give_stuff(" ")
+                else:
+                    self.x += 1
+                    Co.give_stuff(" ")
+            elif self.y < pY and self.x < pX and CD.CordType == " " and CR.CordType == " ":
+                if random.randint(1, 2) == 1:
+                    self.y += 1
+                    Co.give_stuff(" ")
+                else:
+                    self.x += 1
+                    Co.give_stuff(" ")
+            elif self.y > pY and CU.CordType == " ":
                 self.y -= 1
                 Co.give_stuff(" ")
-            else:
+            elif self.x > pX and CL.CordType == " ":
                 self.x -= 1
                 Co.give_stuff(" ")
-        elif self.y<pY and self.x>pX and CD.CordType == " " and CL.CordType == " ":
-            if random.randint(1,2) == 1:
+            elif self.y < pY and CD.CordType == " ":
                 self.y += 1
                 Co.give_stuff(" ")
-            else:
-                self.x -= 1
-                Co.give_stuff(" ")
-        elif self.y>pY and self.x<pX and CU.CordType == " " and CR.CordType == " ":
-            if random.randint(1,2) == 1:
-                self.y -= 1
-                Co.give_stuff(" ")
-            else:
+            elif self.x < pX and CR.CordType == " ":
                 self.x += 1
                 Co.give_stuff(" ")
-        elif self.y<pY and self.x<pX and CD.CordType == " " and CR.CordType == " ":
-            if random.randint(1,2) == 1:
-                self.y += 1
-                Co.give_stuff(" ")
-            else:
-                self.x += 1
-                Co.give_stuff(" ")
-        elif self.y > pY and CU.CordType == " ":
-            self.y -= 1
-            Co.give_stuff(" ")
-        elif self.x > pX and CL.CordType == " ":
-            self.x -= 1
-            Co.give_stuff(" ")
-        elif self.y < pY and CD.CordType == " ":
-            self.y += 1
-            Co.give_stuff(" ")
-        elif self.x < pX and CR.CordType == " ":
-            self.x += 1
-            Co.give_stuff(" ")
-        f_cord(self.x, self.y).give_stuff(self.Symbol)
+            f_cord(self.x, self.y).give_stuff(self.Symbol)
     def ForceUp(self):
         if f_cord(self.x,self.y-1):
-            Co = f_cord(self.x, self.y)
-            Co.give_stuff(" ")
-            self.y += -1
-            Cn = f_cord(self.x, self.y)
-            Cn.give_stuff(self.Symbol)
-        if f_cord(self.x,self.y-1):
-            Co = f_cord(self.x, self.y)
-            Co.give_stuff(" ")
-            self.y += -1
-            Cn = f_cord(self.x, self.y)
-            Cn.give_stuff(self.Symbol)
+            if f_cord(self.x,self.y-1).CordType == " ":
+                f_cord(self.x, self.y).give_stuff(" ")
+                self.y -= 1
+                f_cord(self.x, self.y).give_stuff(self.Symbol)
+                self.Pushed = 1
     def ForceLeft(self):
         if f_cord(self.x-1,self.y):
-            Co = f_cord(P.x, P.y)
-            Co.give_stuff(" ")
-            self.x += -1
-            Cn = f_cord(P.x, P.y)
-            Cn.give_stuff(self.Symbol)
-        if f_cord(self.x-1,self.y):
-            Co = f_cord(P.x, P.y)
-            Co.give_stuff(" ")
-            self.x += -1
-            Cn = f_cord(P.x, P.y)
-            Cn.give_stuff(self.Symbol)
+            if f_cord(self.x-1,self.y).CordType == " ":
+                f_cord(self.x, self.y).give_stuff(" ")
+                self.x -= 1
+                f_cord(self.x, self.y).give_stuff(self.Symbol)
+                self.Pushed = 1
     def ForceDown(self):
         if f_cord(self.x,self.y+1):
-            Co = f_cord(P.x, P.y)
-            Co.give_stuff(" ")
-            self.y += 1
-            Cn = f_cord(P.x, P.y)
-            Cn.give_stuff(self.Symbol)
-        if f_cord(self.x,self.y+1):
-            Co = f_cord(P.x, P.y)
-            Co.give_stuff(" ")
-            self.y += 1
-            Cn = f_cord(P.x, P.y)
-            Cn.give_stuff(self.Symbol)
+            if f_cord(self.x,self.y+1).CordType == " ":
+                f_cord(self.x, self.y).give_stuff(" ")
+                self.y += 1
+                f_cord(self.x, self.y).give_stuff(self.Symbol)
+                self.Pushed = 1
     def ForceRight(self):
         if f_cord(self.x+1,self.y):
-            Co = f_cord(P.x, P.y)
-            Co.give_stuff(" ")
-            self.x += 1
-            Cn = f_cord(P.x, P.y)
-            Cn.give_stuff(self.Symbol)
-        if f_cord(self.x+1,self.y):
-            Co = f_cord(P.x, P.y)
-            Co.give_stuff(" ")
-            self.x += 1
-            Cn = f_cord(P.x, P.y)
-            Cn.give_stuff(self.Symbol)
+            if f_cord(self.x+1,self.y).CordType == " ":
+                f_cord(self.x, self.y).give_stuff(" ")
+                self.x += 1
+                f_cord(self.x, self.y).give_stuff(self.Symbol)
+                self.Pushed = 1
 class Thug(Enemy):
     def __init__(self,x,y,Wv):
         Enemy.__init__(self,x,y,"T",1,1,1,Wv,1)
