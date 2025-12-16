@@ -48,6 +48,7 @@ class Enemy:
         self.ESpd = Spd
         self.Wave = Wv
         self.Value = Vlu
+        self.Pushed = 0
         allEs.append(self)
 class Thug(Enemy):
     def __init__(self,x,y,Wv):
@@ -55,6 +56,24 @@ class Thug(Enemy):
 class Squire(Enemy):
     def __init__(self,x,y,Wv):
         Enemy.__init__(self,x,y,"S",2,2,1,Wv,2)
+class Knight(Enemy):
+    def __init__(self, x, y, Wv):
+        Enemy.__init__(self, x, y, "K", 4, 3, 1, Wv, 4)
+class Archer(Enemy):
+    def __init__(self, x, y, Wv):
+        Enemy.__init__(self, x, y, "A", 1, 2, 1, Wv, 3)
+class Berzerker(Enemy):
+    def __init__(self, x, y, Wv):
+        Enemy.__init__(self, x, y, "B", 2, 3, 2, Wv, 3)
+class Executioner(Enemy):
+    def __init__(self, x, y, Wv):
+        Enemy.__init__(self, x, y, "X", 5, 2, 1, Wv, 5)
+class Rogue(Enemy):
+    def __init__(self, x, y, Wv):
+        Enemy.__init__(self, x, y, "R", 1, 2, 2, Wv, 3)
+class Longbowmen(Enemy):
+    def __init__(self, x, y, Wv):
+        Enemy.__init__(self, x, y, "L", 3, 4, 1, Wv, 5)
 
 allEs=[]
 ShopC=[]
@@ -70,12 +89,37 @@ e = Squire(8,9,3)
 
 #20 Characters per line. Rarities: 1=common, 2=rare, 3=legendary
 #Armor and Weapon descriptions should have 3 "\n"s
-arm = Armor("Chain Mail", 4, 2, 5, 1,"The protective armor\nof a soldier.\n\n")
-wep = Weapon("Daggers", 2, 1, 1, "Light","Why have one blade\nwhen you could have\ntwo?\n")
+arm = Armor("Leather Armor      C", 4, 2, 5, 1,"\n\n\n")
+arm = Armor("Studded Armor      C", 4, 2, 5, 1,"\n\n\n")
+arm = Armor("Chain Shirt        R", 4, 2, 5, 1,"\n\n\n")
+arm = Armor("Breastplate        R", 4, 2, 5, 1,"\n\n\n")
+arm = Armor("Chain Mail         L", 4, 2, 5, 1,"\n\n\n")
+arm = Armor("Plate Armor        L", 4, 2, 5, 1,"\n\n\n")
+
+wep = Weapon("Daggers            C", 3, 1, 1, "Light","Why have one blade\nwhen you could have\ntwo?\n")
+wep = Weapon("Longsword          C", 3, 1, 2, "Normal","\n\n\n")
+wep = Weapon("Hammer             C", 2, 1, 1, "Push","\n\n\n")
+wep = Weapon("Spear              C", 2, 1, 1, "Reach","\n\n\n")
+wep = Weapon("Sling              C", 3, 1, 1, "Ranged","\n\n\n")
+wep = Weapon("Shortbow           R", 5, 2, 2, "Ranged","\n\n\n")
+wep = Weapon("Battleaxe          R", 4, 2, 2, "Cleave","\n\n\n")
+wep = Weapon("Rapier             R", 4, 2, 2, "Light","\n\n\n")
+wep = Weapon("Pike               R", 4, 2, 2, "Reach","\n\n\n")
+wep = Weapon("Warhammer          R", 4, 2, 2, "Push","\n\n\n")
+wep = Weapon("Longbow            L", 7, 3, 2, "Ranged","\n\n\n")
 
 #Item and Artifact descriptions should have 4 "\n"s
-it = Item("Health Potion",2,1,"Restore 3 HP",3, 0, 0, "\nA bubbling red\nliquid in a small\nglass vile.\n")
-art = Artifact("Winged Shoes", 7, 3, "Increase speed a lot", 3, 0,"\nI don't know who's\nwings these once\nwere, but they have\nmy pity.")
+it = Item("Health Potion      C",2,1,"Restore 3 HP",3, 0, 0, "\nA bubbling red\nliquid in a small\nglass vile.\n")
+it = Item("Health Potion      R",4,2,"Restore 5 HP",5, 0, 0, "\nA bubbling red\nliquid in a small\nglass bottle.\n")
+it = Item("Health Potion      L",6,3,"Restore all HP",10, 0, 0, "\nA bubbling red\nliquid in a glass\nbottle.\n")
+it = Item("Dash               C",2,1,"Move again this turn",0, 1, 0, "\nSprint across the\nbattle field.\n\n")
+it = Item("Dash               R",4,2,"Move two more times\nthis turn",0, 2, 0, "Sprint across the\nbattle field.\n\n")
+it = Item("Dash               L",6,3,"Move three more\ntimes this turn",0, 3, 0, "Sprint across the\nbattle field.\n\n")
+it = Item("Haste              C",2,1,"Attack again this turn",0, 0, 1, "\nMove with incredible\nspeed.\n\n")
+it = Item("Haste              R",4,2,"Attack two more\ntimes this turn",0, 0, 1, "Move with incredible\nspeed.\n\n")
+it = Item("Haste              L",6,3,"Attack three more\ntimes this turn",0, 0, 1, "Move with incredible\nspeed.\n\n")
+
+art = Artifact("Winged Shoes       L", 7, 3, "Increase speed\nsignificantly", 3, 0,"I don't know who's\nwings these once\nwere, but they have\nmy pity.")
 
 with open("enemies.dat","wb") as dat:
     pickle.dump(allEs,dat)
