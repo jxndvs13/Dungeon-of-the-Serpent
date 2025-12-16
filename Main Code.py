@@ -24,7 +24,7 @@ class Player:
         self.Res = 0
         self.Weapon = "Normal"
         self.Spd = 1
-        self.Bank = 1
+        self.Bank = 100
         self.Symbol = "0"
     def NewMaxHP(self, n):
         o = self.MaxHP
@@ -303,8 +303,11 @@ class Weapon(Purchasable):
         self.Damage = dmg
         self.Type = type
     def Equip(self):
+        global Attacks
         P.NewDmg(self.Damage)
         P.NewWeapon(self.Type)
+        if self.Type == "Light":
+            Attacks+=1
     def Display(self):
         return f"{self.Name}\n{self.Type}\nDmg: {self.Damage}\n{self.Description}\nCost: {self.Cost}"
 class Armor(Purchasable):
@@ -827,10 +830,6 @@ def RunTurn():
             if e.ESpd == 2:
                 Enemy.Move(e,P.x,P.y)
                 Enemy.Move(e,P.x,P.y)
-            if e.ESpd == 3:
-                Enemy.Move(e,P.x,P.y)
-                Enemy.Move(e,P.x,P.y)
-                Enemy.Move(e,P.x,P.y)
             e.Attack()
         Moves = P.Spd
         if P.Weapon == "Light":
@@ -946,6 +945,9 @@ def RefreshShop():
         else:
             P3 = random.randint(0, len(ShopR) - 1)
             Product3 = ShopR[P3]
+        if random.randint(1,20) == 1:
+            P3 = random.randint(0,len(ShopU)-1)
+            Product3 = ShopU[P3]
         Shop3.config(state=NORMAL)
         Shop3.delete(1.0, "end-1c")
         Shop3.insert(tk.INSERT, Product3.Display())
@@ -980,6 +982,8 @@ Rdat=open("rare_loot.dat","rb")
 ShopR=pickle.load(Rdat)
 Ldat=open("legendary_loot.dat","rb")
 ShopL=pickle.load(Ldat)
+Udat=open("unique_loot.dat","rb")
+ShopU=pickle.load(Udat)
 Product1 = None
 Product2 = None
 Product3 = None
