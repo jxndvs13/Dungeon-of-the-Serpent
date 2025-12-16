@@ -921,7 +921,7 @@ def RefreshShop():
             P3 = random.randint(0, len(ShopC) - 1)
             Product3 = ShopC[P3]
         elif R3 > (WaveN + 3):
-            P3 = random.randint(0, len(ShopR) - 1)
+            P3 = random.randint(0, len(ShopL) - 1)
             Product3 = ShopL[P3]
         else:
             P3 = random.randint(0, len(ShopR) - 1)
@@ -1034,3 +1034,4 @@ ReShop.place(x=375,y=318)
 RefreshShop()
 PrintScreen()
 screen.mainloop()
+
