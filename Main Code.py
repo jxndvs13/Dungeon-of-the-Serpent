@@ -681,6 +681,13 @@ class Rogue(Enemy):
             if f_cord(self.x + 1, self.y):
                 if f_cord(self.x + 1, self.y).CordType == P.Symbol:
                     P.Hurt(self.EDmg)
+    def Hurt(self, dmg):
+        self.EHp -= dmg
+        if self.EHp < 1:
+            activeEs.remove(self)
+            Co = f_cord(self.x, self.y)
+            Co.give_stuff(" ")
+            P.Bank += self.Value
 class Longbowmen(Enemy):
     def __init__(self, x, y, Wv):
         Enemy.__init__(self, x, y, "L", 3, 4, 1, Wv, 5)
