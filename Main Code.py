@@ -109,30 +109,6 @@ class Player:
         if Moves > 0:
             Moves -= 1
             RunTurn()
-    def ForceUp(self):
-        Co = f_cord(self.x, self.y)
-        Co.give_stuff(" ")
-        self.y += -1
-        Cn = f_cord(self.x, self.y)
-        Cn.give_stuff(self.Symbol)
-    def ForceLeft(self):
-        Co = f_cord(P.x, P.y)
-        Co.give_stuff(" ")
-        self.x += -1
-        Cn = f_cord(P.x, P.y)
-        Cn.give_stuff(self.Symbol)
-    def ForceDown(self):
-        Co = f_cord(P.x, P.y)
-        Co.give_stuff(" ")
-        self.y += 1
-        Cn = f_cord(P.x, P.y)
-        Cn.give_stuff(self.Symbol)
-    def ForceRight(self):
-        Co = f_cord(P.x, P.y)
-        Co.give_stuff(" ")
-        self.x += 1
-        Cn = f_cord(P.x, P.y)
-        Cn.give_stuff(self.Symbol)
     def AttackUp(self):
         global Attacks
         Co = f_cord(P.x,P.y-1)
@@ -516,6 +492,11 @@ class Knight(Enemy):
         if self.EHp < 2.5:
             self.nSymbol("k")
             f_cord(self.x, self.y).give_stuff(self.Symbol)
+        if self.EHp < 1:
+            activeEs.remove(self)
+            Co = f_cord(self.x, self.y)
+            Co.give_stuff(" ")
+            P.Bank += self.Value
 class Archer(Enemy):
     def __init__(self, x, y, Wv):
         Enemy.__init__(self, x, y, "A", 1, 2, 1, Wv, 3)
@@ -1053,4 +1034,3 @@ ReShop.place(x=375,y=318)
 RefreshShop()
 PrintScreen()
 screen.mainloop()
-
