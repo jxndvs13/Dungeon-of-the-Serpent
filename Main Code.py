@@ -24,7 +24,7 @@ class Player:
         self.Res = 0
         self.Weapon = "Normal"
         self.Spd = 1
-        self.Bank = 100
+        self.Bank = 0
         self.Symbol = "0"
     def NewMaxHP(self, n):
         o = self.MaxHP
@@ -1053,3 +1053,4 @@ ReShop.place(x=375,y=318)
 RefreshShop()
 PrintScreen()
 screen.mainloop()
+
