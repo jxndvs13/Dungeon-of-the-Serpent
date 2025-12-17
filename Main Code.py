@@ -29,16 +29,23 @@ class Player:
     def NewMaxHP(self, n):
         o = self.MaxHP
         self.MaxHP = n
-        if n != o:
-            self.EditHealth(n-o)
-            if P.HP == 0:
-                P.HP = 1
+        d = n-o
+        self.Heal(d)
+        if P.HP == 0:
+            P.HP = 1
     def EditHealth(self,n):
-        self.HP += n
+        self.MaxHP += n
     def Heal(self,n):
         self.HP += n
         if self.HP > self.MaxHP:
             self.HP = self.MaxHP
+        if self.HP < 0:
+            self.HP = 0
+        elif self.HP < self.MaxHP/3*2+1:
+            self.Symbol = "O"
+        elif self.HP < self.MaxHP/3+1:
+            self.Symbol = "o"
+        f_cord(self.x, self.y).give_stuff(self.Symbol)
     def IncHP(self,n):
         self.PermHP += n
         self.EditHealth(n)
@@ -49,15 +56,16 @@ class Player:
     def NewResistance(self,n):
         self.Res = n
     def NewSpeed(self, x):
-        self.Spd = x
+        if x > 0:
+            self.Spd = x
     def Hurt(self, dmg):
         ndmg = dmg - self.Res
         self.HP -= ndmg
         if self.HP < 0:
             self.HP = 0
-        if self.HP < self.MaxHP/3*2+1:
+        elif self.HP < self.MaxHP/3*2+1:
             self.Symbol = "O"
-        if self.HP < self.MaxHP/3+1:
+        elif self.HP < self.MaxHP/3+1:
             self.Symbol = "o"
         f_cord(self.x, self.y).give_stuff(self.Symbol)
     def MoveUp(self):
@@ -484,15 +492,10 @@ class Knight(Enemy):
                 P.Hurt(self.EDmg)
     def Hurt(self, dmg):
         self.EHp -= dmg
-        if self.EHp < 1:
-            activeEs.remove(self)
-            Co = f_cord(self.x, self.y)
-            Co.give_stuff(" ")
-            P.Bank += self.Value
         if self.EHp < 2.5:
             self.nSymbol("k")
             f_cord(self.x, self.y).give_stuff(self.Symbol)
-        if self.EHp < 1:
+        elif self.EHp < 1:
             activeEs.remove(self)
             Co = f_cord(self.x, self.y)
             Co.give_stuff(" ")
@@ -607,7 +610,7 @@ class Berzerker(Enemy):
             Co = f_cord(self.x, self.y)
             Co.give_stuff(" ")
             P.Bank += self.Value
-        if self.EHp == 1:
+        elif self.EHp == 1:
             self.nSymbol("b")
             f_cord(self.x, self.y).give_stuff(self.Symbol)
 class Executioner(Enemy):
@@ -645,7 +648,7 @@ class Executioner(Enemy):
             Co = f_cord(self.x, self.y)
             Co.give_stuff(" ")
             P.Bank += self.Value
-        if self.EHp < 2.5:
+        elif self.EHp < 2.5:
             self.nSymbol("x")
             f_cord(self.x, self.y).give_stuff(self.Symbol)
 class Rogue(Enemy):
@@ -783,7 +786,7 @@ class Longbowmen(Enemy):
             Co = f_cord(self.x, self.y)
             Co.give_stuff(" ")
             P.Bank += self.Value
-        if self.EHp == 1:
+        elif self.EHp == 1:
             self.nSymbol("l")
             f_cord(self.x, self.y).give_stuff(self.Symbol)
 def f_cord(fx, fy):
@@ -933,6 +936,7 @@ def RefreshShop():
         Shop3.delete(1.0, "end-1c")
         Shop3.insert(tk.INSERT, Product3.Display())
         Shop3.config(state=DISABLED)
+        PrintScreen()
 def Buy1():
     if P.Bank >= Product1.Cost:
         Product1.Equip()
@@ -972,7 +976,6 @@ Moves = P.Spd
 Attacks = 1
 WaveN = 0
 WaveStart()
-
 Display = Text(screen,width=22,height=11,font=("fixedsys",21))
 Display.place(x=10,y=10)
 Display.tag_configure("display_tag", justify="center")
@@ -1034,5 +1037,3 @@ ReShop.place(x=375,y=318)
 RefreshShop()
 PrintScreen()
 screen.mainloop()
-
-
